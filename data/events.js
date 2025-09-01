@@ -1,0 +1,115 @@
+// Données centralisées des événements CrossKultur
+export const events = [
+  {
+    id: 1,
+    title: "FFI Edition n°1",
+    slug: "ffi-edition-1",
+    description: "Tournoi de football inspiré des plus grands mangas de ce genre.",
+    shortDescription: "Un tournoi de football épique où les équipes s'affrontent dans des matchs inspirés des plus grands mangas de sport.",
+    fullDescription: "Première édition de notre tournoi Football Frontier International, inspiré d'Inazuma Eleven. Les équipes s'affrontent dans des matchs palpitants avec des techniques spéciales et une ambiance digne des plus grands tournois manga.",
+    date: "2025-07-19",
+    status: "past",
+    type: "sport",
+    category: "sport",
+    imageGradient: "bg-gradient-to-br from-green-500 via-blue-500 to-green-600",
+    location: "Centre sportif Didot, Paris",
+    duration: "Week-end complet",
+    price: "30€",
+    participants: 44,
+    maxParticipants: 44,
+    registeredParticipants: 44,
+    tags: ["football", "tournoi", "compétition", "Inazuma Eleven", "sport"]
+  },
+  {
+    id: 2,
+    title: "FFI Edition n°1 All-Stars",
+    slug: "ffi-edition-1-allstars",
+    description: "Match All-Stars réunissant les meilleurs joueurs de la première édition du tournoi.",
+    shortDescription: "Un affrontement épique entre les meilleurs joueurs de la première édition FFI.",
+    fullDescription: "Match spécial réunissant les joueurs les plus talentueux de la première édition FFI. Une rencontre exceptionnelle avec des techniques spéciales inédites et une ambiance électrisante.",
+    date: "2025-08-25",
+    status: "past",
+    type: "sport",
+    category: "sport",
+    imageGradient: "bg-gradient-to-br from-yellow-500 via-orange-500 to-red-500",
+    location: "Centre sportif Didot, Paris",
+    duration: "Après-midi",
+    price: "15€",
+    participants: 22,
+    maxParticipants: 22,
+    registeredParticipants: 22,
+    rating: 5.0,
+    tags: ["football", "all-stars", "élite", "spectacle", "Inazuma Eleven"]
+  },
+  {
+    id: 3,
+    title: "FFI Edition n°2",
+    slug: "ffi-edition-2",
+    description: "Deuxième édition du tournoi de football inspiré des plus grands mangas de ce genre.",
+    shortDescription: "La suite tant attendue de notre tournoi FFI avec de nouvelles équipes et techniques.",
+    fullDescription: "Deuxième édition du Football Frontier International avec encore plus d'équipes, de nouvelles techniques spéciales et des défis inédits. Préparez-vous à vivre une expérience football manga encore plus intense !",
+    date: "2025-12-15",
+    status: "upcoming",
+    type: "sport",
+    category: "sport",
+    imageGradient: "bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500",
+    location: "En recherche...",
+    duration: "Week-end complet",
+    price: "35€",
+    participants: 66,
+    maxParticipants: 66,
+    registeredParticipants: 12,
+    rating: null,
+    tags: ["football", "tournoi", "compétition", "Inazuma Eleven", "évolution"]
+  },
+  {
+    id: 4,
+    title: "Winter Cup",
+    slug: "winter-cup",
+    description: "Tournoi de basket inspiré des plus grands mangas de ce genre.",
+    shortDescription: "Compétition de basket-ball mettant en avant des équipes inspirées de Kuroko no Basket.",
+    fullDescription: "Tournoi de basket-ball inspiré de Kuroko no Basket et Slam Dunk. Des matchs intenses avec des techniques spéciales, des défis d'adresse et une ambiance de compétition authentique.",
+    date: "2026-01-20",
+    status: "upcoming",
+    type: "sport",
+    category: "sport",
+    imageGradient: "bg-gradient-to-br from-orange-500 via-red-500 to-purple-500",
+    location: "En recherche...",
+    duration: "Week-end complet",
+    price: "30€",
+    participants: 60,
+    maxParticipants: 60,
+    registeredParticipants: 8,
+    rating: null,
+    tags: ["basket", "tournoi", "compétition", "Kuroko no Basket", "Slam Dunk"]
+  },
+]
+
+// Fonction pour obtenir un événement par ID
+export const getEventById = (id) => {
+  return events.find(event => event.id === id)
+}
+
+// Fonction pour obtenir un événement par slug
+export const getEventBySlug = (slug) => {
+  return events.find(event => event.slug === slug)
+}
+
+// Fonction pour filtrer les événements par statut
+export const getEventsByStatus = (status) => {
+  if (status === 'all') return events
+  return events.filter(event => event.status === status)
+}
+
+// Fonction pour obtenir les événements à venir (limité)
+export const getUpcomingEvents = (limit = 3) => {
+  return events
+    .filter(event => event.status === 'upcoming')
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .slice(0, limit)
+}
+
+// Fonction pour obtenir les événements par catégorie
+export const getEventsByCategory = (category) => {
+  return events.filter(event => event.category === category)
+}
