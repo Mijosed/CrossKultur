@@ -41,18 +41,18 @@
       <!-- Timeline -->
       <div class="relative max-w-4xl mx-auto">
         <!-- Ligne centrale -->
-        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-600 via-pink-500 to-purple-600 rounded-full"></div>
+        <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-600 via-pink-500 to-purple-600 rounded-full"></div>
 
         <!-- Événements -->
         <div class="space-y-12">
           <div 
             v-for="(event, index) in filteredEvents" 
             :key="event.id"
-            :class="['relative flex items-center', index % 2 === 0 ? 'flex-row' : 'flex-row-reverse']"
+            :class="['timeline-event relative flex items-center', index % 2 === 0 ? 'flex-row' : 'flex-row-reverse']"
             @click="selectEvent(event)"
           >
             <!-- Point sur la timeline -->
-            <div class="absolute left-1/2 transform -translate-x-1/2 z-10">
+            <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 z-10">
               <div :class="[
                 'w-6 h-6 rounded-full border-4 border-white shadow-lg cursor-pointer transition-all duration-300 hover:scale-125',
                 getEventStatusColor(event.status)
@@ -200,7 +200,7 @@ const stats = computed(() => ({
 /* Améliorations pour les cartes de timeline */
 .timeline-card-container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .timeline-card {
@@ -213,25 +213,59 @@ const stats = computed(() => ({
   transform: translateY(-4px) scale(1.02);
 }
 
-/* Animation au scroll pour les cartes */
+/* Timeline styling */
+.timeline-line {
+  z-index: 1;
+}
+
+.timeline-dot {
+  z-index: 5;
+}
+
+/* Responsive design pour mobile */
 @media (max-width: 768px) {
-  .relative.flex.items-center {
+  /* Masquer la ligne centrale sur mobile */
+  .timeline-line {
+    display: none;
+  }
+  
+  /* Repositionner les dots sur mobile */
+  .timeline-dot {
+    position: static !important;
+    transform: none !important;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* Réorganiser les événements en colonne sur mobile */
+  .timeline-event {
     flex-direction: column !important;
+    align-items: center !important;
   }
-  .w-5\/12 {
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 1rem 0 !important;
-  }
+  
+  /* Cartes en pleine largeur sur mobile */
   .timeline-card-container {
     width: 100% !important;
     padding: 0 !important;
-    margin: 1rem 0 !important;
+    margin: 0 !important;
+    max-width: 400px;
+  }
+  
+  /* Ajuster l'espacement entre les événements */
+  .space-y-12 > * + * {
+    margin-top: 2rem !important;
   }
 }
 
-/* Amélioration de la ligne de timeline */
-.absolute.left-1\/2 {
-  z-index: 5;
+/* Amélioration de la ligne de timeline pour desktop */
+@media (min-width: 769px) {
+  .timeline-line {
+    z-index: 1;
+  }
+  
+  .timeline-dot {
+    z-index: 5;
+  }
 }
 </style>
