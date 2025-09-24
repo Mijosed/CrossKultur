@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <section class="relative bg-gradient-to-r from-purple-600 to-pink-600 min-h-screen flex items-center">
+    <section class="relative bg-gradient-to-r from-[#004AAD] to-[#CB6CE6] min-h-screen flex items-center">
       <div class="absolute inset-0 bg-black bg-opacity-20"></div>
       <div class="relative container mx-auto px-4 text-center text-white">
         <h1 class="text-5xl md:text-7xl font-bold mb-6">
-          Bienvenue chez <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">CrossKultur</span>
+          Bienvenue chez <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-[#CB6CE6]">CrossKultur</span>
         </h1>
         <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
           L'association qui transforme l'univers des mangas en expériences réelles inoubliables
@@ -43,8 +43,8 @@
           </div>
           
           <div class="text-center">
-            <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
               </svg>
             </div>
@@ -53,8 +53,8 @@
           </div>
           
           <div class="text-center">
-            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
@@ -82,6 +82,7 @@
             :title="event.title"
             :description="event.shortDescription"
             :image-gradient="event.imageGradient"
+            :image-url="event.imageUrl"
             :status="event.status"
             :date="event.date"
             :participants="event.maxParticipants"
@@ -94,24 +95,6 @@
         <div class="text-center mt-12">
           <NuxtLink to="/evenements" class="bg-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
             Voir tous les événements
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
-      <div class="container mx-auto px-4 text-center text-white">
-        <h2 class="text-4xl font-bold mb-6">Prêt à vivre l'aventure ?</h2>
-        <p class="text-xl mb-8 max-w-2xl mx-auto">
-          Rejoignez CrossKultur et participez à des événements uniques qui donneront vie à vos mangas préférés !
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <NuxtLink to="/contact" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-            Nous contacter
-          </NuxtLink>
-          <NuxtLink to="/membres" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
-            Devenir membre
           </NuxtLink>
         </div>
       </div>
@@ -135,7 +118,7 @@ const getActionText = (status) => {
   switch (status) {
     case 'upcoming': return 'En savoir plus'
     case 'ongoing': return 'Rejoindre'
-    case 'past': return 'Voir photos'
+    case 'past': return 'Voir détails'
     default: return 'Découvrir'
   }
 }

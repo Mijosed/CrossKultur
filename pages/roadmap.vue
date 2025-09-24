@@ -67,6 +67,8 @@
               <EventCard
                 :title="event.title"
                 :description="event.description"
+                :image-gradient="event.imageGradient"
+                :image-url="event.imageUrl"
                 :status="event.status"
                 :date="event.date"
                 :location="event.location"

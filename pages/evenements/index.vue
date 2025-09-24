@@ -18,6 +18,7 @@
           :title="event.title"
           :description="event.shortDescription"
           :image-gradient="event.imageGradient"
+          :image-url="event.imageUrl"
           :status="event.status"
           :date="event.date"
           :location="event.location"
@@ -29,21 +30,6 @@
         >
           
         </EventCard>
-      </div>
-
-      <!-- Section d'appel à l'action -->
-      <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-8 text-center text-white">
-        <h2 class="text-3xl font-bold mb-4">Vous avez une idée d'événement ?</h2>
-        <p class="text-xl mb-6 opacity-90">
-          Nous sommes toujours ouverts à de nouvelles idées ! Proposez-nous votre concept d'événement manga.
-        </p>
-        <NuxtLink to="/contact" 
-                  class="inline-flex items-center px-8 py-4 bg-white text-purple-600 font-semibold rounded-full hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-          Proposer un événement
-          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </NuxtLink>
       </div>
     </div>
   </div>
@@ -109,7 +95,7 @@ const getActionButtonText = (status) => {
   switch (status) {
     case 'upcoming': return 'S\'inscrire'
     case 'ongoing': return 'Rejoindre'
-    case 'past': return 'Voir photos'
+    case 'past': return 'Voir détails'
     default: return 'En savoir plus'
   }
 }

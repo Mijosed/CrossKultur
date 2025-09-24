@@ -3,11 +3,12 @@
     <nav class="container mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
         <!-- Logo -->
-        <NuxtLink to="/" class="flex items-center space-x-2">
-          <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-xl">CK</span>
-          </div>
-          <span class="text-2xl font-bold text-gray-800">CrossKultur</span>
+        <NuxtLink to="/" class="flex items-center space-x-3">
+          <img 
+            src="/logo.png" 
+            alt="CrossKultur Logo" 
+            class="h-16 w-auto rounded-xl"
+          />
         </NuxtLink>
 
         <!-- Mobile menu button -->

@@ -111,19 +111,6 @@
               ></textarea>
             </div>
 
-            <!-- Checkbox newsletter -->
-            <div class="flex items-start">
-              <input
-                type="checkbox"
-                id="newsletter"
-                v-model="form.newsletter"
-                class="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-              >
-              <label for="newsletter" class="ml-3 text-sm text-gray-600">
-                Je souhaite recevoir la newsletter CrossKultur pour être informé(e) des prochains événements
-              </label>
-            </div>
-
             <!-- Bouton de soumission -->
             <button
               type="submit"
@@ -176,39 +163,7 @@
                 </div>
               </div>
 
-              <!-- Téléphone -->
-              <div class="flex items-start">
-                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                  <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-gray-800">Téléphone</h3>
-                  <a href="tel:+33123456789" class="text-blue-600 hover:text-blue-800 transition-colors">
-                    01 23 45 67 89
-                  </a>
-                  <p class="text-sm text-gray-500 mt-1">Lun-Ven 9h-18h</p>
-                </div>
-              </div>
-
-              <!-- Adresse -->
-              <div class="flex items-start">
-                <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                  <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-gray-800">Adresse</h3>
-                  <p class="text-gray-600">
-                    123 Rue des Manga<br>
-                    75001 Paris, France
-                  </p>
-                  <p class="text-sm text-gray-500 mt-1">Siège social</p>
-                </div>
-              </div>
+              
             </div>
           </div>
 
@@ -223,13 +178,16 @@
               <!-- Instagram -->
               <a href="#" class="flex items-center p-4 border border-gray-200 rounded-lg hover:border-pink-300 hover:bg-pink-50 transition-all duration-300 group">
                 <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
-                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.004 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.344-1.297L12.017 8.78l6.912 6.911c-.896.807-2.047 1.297-3.344 1.297H8.449z"/>
+                  <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path 
+      d="M7.5 2h9a5.5 5.5 0 0 1 5.5 5.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zm9.75 1.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" 
+      fill="white" 
+    />
                   </svg>
                 </div>
                 <div>
                   <h3 class="font-semibold text-gray-800 group-hover:text-pink-600 transition-colors">Instagram</h3>
-                  <p class="text-sm text-gray-500">@crosskultur_official</p>
+                  <p class="text-sm text-gray-500">@crosskultur.fr</p>
                 </div>
               </a>
 
@@ -243,19 +201,6 @@
                 <div>
                   <h3 class="font-semibold text-gray-800 group-hover:text-gray-900 transition-colors">TikTok</h3>
                   <p class="text-sm text-gray-500">@crosskultur</p>
-                </div>
-              </a>
-
-              <!-- Twitter -->
-              <a href="#" class="flex items-center p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 group">
-                <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
-                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">Twitter</h3>
-                  <p class="text-sm text-gray-500">@CrossKultur_FR</p>
                 </div>
               </a>
 
