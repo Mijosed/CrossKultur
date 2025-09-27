@@ -74,32 +74,6 @@
             </div>
           </section>
 
-          <!-- Règles spéciales -->
-          <section class="bg-white rounded-xl shadow-lg p-8 mb-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Règles spéciales manga</h2>
-            <div class="space-y-6">
-              <div class="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 p-6 rounded-lg">
-                <h3 class="text-xl font-bold text-red-700 mb-3">🔥 Techniques spéciales autorisées</h3>
-                <ul class="text-gray-700 space-y-2">
-                  <li>• <strong>Thunder Shot :</strong> Lancer puissant avec effet sonore</li>
-                  <li>• <strong>Shadow Clone :</strong> Feinte de lancer pour tromper l'adversaire</li>
-                  <li>• <strong>Phoenix Dodge :</strong> Esquive spectaculaire avec roulade</li>
-                  <li>• <strong>Team Combo :</strong> Passes coordonnées entre coéquipiers</li>
-                </ul>
-              </div>
-              
-              <div class="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-500 p-6 rounded-lg">
-                <h3 class="text-xl font-bold text-blue-700 mb-3">⚡ Règles manga</h3>
-                <ul class="text-gray-700 space-y-2">
-                  <li>• <strong>Mode héroïque :</strong> Dernier joueur = pouvoirs temporaires</li>
-                  <li>• <strong>Power-up :</strong> Balles spéciales apparaissent aléatoirement</li>
-                  <li>• <strong>Rage Mode :</strong> Équipe menée peut activer un bonus</li>
-                  <li>• <strong>Friendship Power :</strong> Encouragements = bonus d'équipe</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
           <!-- Format du tournoi -->
           <section class="bg-white rounded-xl shadow-lg p-8 mb-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Format du tournoi</h2>
@@ -179,31 +153,6 @@
               </div>
             </div>
           </section>
-
-          <!-- Galerie concept -->
-          <section class="bg-white rounded-xl shadow-lg p-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Ambiance du tournoi</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div class="aspect-square bg-gradient-to-br from-red-400 to-orange-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Thunder<br>Shot</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Epic<br>Dodges</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-green-400 to-teal-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Team<br>Spirit</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Victory<br>Dance</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-yellow-400 to-orange-400 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Rage<br>Mode</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-indigo-400 to-blue-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Final<br>Showdown</span>
-              </div>
-            </div>
-          </section>
         </div>
 
         <!-- Sidebar -->
@@ -279,60 +228,6 @@
                   </svg>
                   prison@crosskultur.fr
                 </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Prix -->
-          <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">🏆 Récompenses</h3>
-            <div class="space-y-3">
-              <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                <span class="font-medium text-yellow-800">1ère place</span>
-                <span class="text-sm text-yellow-700">Trophée + 100€ cash</span>
-              </div>
-              <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
-                <span class="font-medium text-gray-700">2ème place</span>
-                <span class="text-sm text-gray-600">Médailles + 50€ cash</span>
-              </div>
-              <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg border border-orange-200">
-                <span class="font-medium text-orange-700">3ème place</span>
-                <span class="text-sm text-orange-600">Médailles + goodies</span>
-              </div>
-              <div class="flex items-center justify-between p-3 bg-purple-50 rounded-lg border border-purple-200">
-                <span class="font-medium text-purple-700">Meilleur joueur</span>
-                <span class="text-sm text-purple-600">Prix spécial</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Équipement -->
-          <div class="bg-white rounded-xl shadow-lg p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">📦 Équipement fourni</h3>
-            <div class="space-y-2 text-sm text-gray-600">
-              <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                Balles officielles souples
-              </div>
-              <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                Chasubles d'équipe
-              </div>
-              <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                Protections (optionnelles)
-              </div>
-              <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                Arbitres qualifiés
               </div>
             </div>
           </div>

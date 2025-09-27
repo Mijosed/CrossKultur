@@ -3,7 +3,7 @@
     <!-- Hero Section -->
     <section class="relative h-96 overflow-hidden">
       <img 
-        src="/ffi_japon.png" 
+        src="/ffi1.jpg" 
         alt="FFI Edition n°1"
         class="absolute inset-0 w-full h-full object-cover"
       >
@@ -42,7 +42,7 @@
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              Week-end complet
+              Journée complète
             </div>
           </div>
         </div>
@@ -80,15 +80,15 @@
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Résultats du tournoi</h2>
             <div class="space-y-6">
               <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-6 rounded-lg">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">🏆 Champion - Équipe Raimon</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">🏆 Champion - Tokyo Cheetah</h3>
                 <p class="text-gray-600">Une équipe exceptionnelle qui a su allier technique et esprit d'équipe pour remporter la première édition.</p>
               </div>
               <div class="bg-gradient-to-r from-gray-50 to-gray-100 border-l-4 border-gray-400 p-6 rounded-lg">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">🥈 Vice-Champion - Équipe Zeus</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">🥈 Vice-Champion - Bando Spiders</h3>
                 <p class="text-gray-600">Une performance remarquable avec des techniques impressionnantes tout au long du tournoi.</p>
               </div>
               <div class="bg-gradient-to-r from-orange-50 to-orange-100 border-l-4 border-orange-400 p-6 rounded-lg">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">🥉 Troisième - Équipe Neo Japan</h3>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">🥉 Troisième - Fukuoka Eagles</h3>
                 <p class="text-gray-600">Un jeu collectif exemplaire et des moments de pure magie footballistique.</p>
               </div>
             </div>
@@ -121,23 +121,65 @@
           <section class="bg-white rounded-xl shadow-lg p-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Galerie photos</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div class="aspect-square bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold">Match d'ouverture</span>
+              <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
+                <img 
+                  src="/ffi.png" 
+                  alt="Match d'ouverture FFI Edition 1"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+                <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span class="text-white font-semibold">Match d'ouverture</span>
+                </div>
               </div>
-              <div class="aspect-square bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold">Techniques spéciales</span>
+              <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
+                <img 
+                  src="/ffi2.png" 
+                  alt="Techniques spéciales FFI"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+                <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span class="text-white font-semibold">Techniques spéciales</span>
+                </div>
               </div>
-              <div class="aspect-square bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold">Célébrations</span>
+              <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
+                <img 
+                  src="/ffi_japon.png" 
+                  alt="Célébrations équipe"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+                <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span class="text-white font-semibold">Célébrations</span>
+                </div>
               </div>
-              <div class="aspect-square bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold">Finale épique</span>
+              <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
+                <img 
+                  src="/ffi.png" 
+                  alt="Finale épique FFI"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+                <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span class="text-white font-semibold">Finale épique</span>
+                </div>
               </div>
-              <div class="aspect-square bg-gradient-to-br from-yellow-400 to-orange-400 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold">Remise des prix</span>
+              <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
+                <img 
+                  src="/ffi2.png" 
+                  alt="Remise des prix"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+                <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span class="text-white font-semibold">Remise des prix</span>
+                </div>
               </div>
-              <div class="aspect-square bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold">Photo de groupe</span>
+              <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
+                <img 
+                  src="/ffi_japon.png" 
+                  alt="Photo de groupe finale"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+                <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span class="text-white font-semibold">Photo de groupe</span>
+                </div>
               </div>
             </div>
           </section>

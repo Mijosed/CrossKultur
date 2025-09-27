@@ -36,7 +36,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              En recherche...
+              Paris, France
             </div>
             <div class="flex items-center text-white/80">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,88 +135,9 @@
               </div>
             </div>
           </section>
-
-          <!-- Catégories -->
-          <section class="bg-white rounded-xl shadow-lg p-8 mb-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Catégories et règles</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="border border-gray-200 rounded-lg p-6 bg-gradient-to-br from-blue-50 to-blue-100">
-                <h3 class="text-xl font-semibold text-blue-800 mb-2">🏀 Seirin (Débutants)</h3>
-                <p class="text-gray-600 mb-4">Pour les joueurs découvrant le basket ou ayant moins de 2 ans d'expérience.</p>
-                <ul class="text-sm text-gray-600">
-                  <li>• Matchs de 4x8 minutes</li>
-                  <li>• Panier à 2m90</li>
-                  <li>• Terrain réduit</li>
-                  <li>• Accompagnement technique</li>
-                </ul>
-              </div>
-              <div class="border border-gray-200 rounded-lg p-6 bg-gradient-to-br from-red-50 to-red-100">
-                <h3 class="text-xl font-semibold text-red-800 mb-2">🔥 Rakuzan (Intermédiaires)</h3>
-                <p class="text-gray-600 mb-4">Pour les joueurs avec 2-5 ans d'expérience en club ou amateur.</p>
-                <ul class="text-sm text-gray-600">
-                  <li>• Matchs de 4x10 minutes</li>
-                  <li>• Panier réglementaire</li>
-                  <li>• Terrain standard</li>
-                  <li>• Arbitrage officiel</li>
-                </ul>
-              </div>
-              <div class="border border-gray-200 rounded-lg p-6 bg-gradient-to-br from-purple-50 to-purple-100">
-                <h3 class="text-xl font-semibold text-purple-800 mb-2">👑 Generation of Miracles (Experts)</h3>
-                <p class="text-gray-600 mb-4">Pour les joueurs expérimentés et les anciens compétiteurs.</p>
-                <ul class="text-sm text-gray-600">
-                  <li>• Matchs de 4x12 minutes</li>
-                  <li>• Règles FIBA</li>
-                  <li>• Niveau compétition</li>
-                  <li>• Prix spéciaux techniques</li>
-                </ul>
-              </div>
-              <div class="border border-gray-200 rounded-lg p-6 bg-gradient-to-br from-green-50 to-green-100">
-                <h3 class="text-xl font-semibold text-green-800 mb-2">🌟 Streetball (Libre)</h3>
-                <p class="text-gray-600 mb-4">Format 3vs3 en extérieur, tous niveaux mélangés.</p>
-                <ul class="text-sm text-gray-600">
-                  <li>• Matchs jusqu'à 15 points</li>
-                  <li>• Règles streetball</li>
-                  <li>• Créativité encouragée</li>
-                  <li>• Ambiance décontractée</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <!-- Techniques spéciales -->
-          <section class="bg-white rounded-xl shadow-lg p-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Système de techniques spéciales</h2>
-            <div class="bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200 rounded-lg p-6 mb-6">
-              <h3 class="text-lg font-semibold text-orange-800 mb-2">🎯 Comment ça marche ?</h3>
-              <p class="text-gray-700">
-                Inspiré de Kuroko no Basket, chaque équipe peut développer ses propres "techniques spéciales" ! 
-                Mouvements créatifs, stratégies originales ou actions collectives spectaculaires seront 
-                récompensés par des points bonus et des prix spéciaux.
-              </p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div class="aspect-square bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Vanishing<br>Drive</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Emperor<br>Eye</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Perfect<br>Copy</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Zone<br>Defense</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-green-400 to-teal-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Phantom<br>Shot</span>
-              </div>
-              <div class="aspect-square bg-gradient-to-br from-pink-400 to-red-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-semibold text-center">Meteor<br>Jam</span>
-              </div>
-            </div>
-          </section>
         </div>
+
+          
 
         <!-- Sidebar -->
         <div class="lg:col-span-1">
@@ -295,21 +216,7 @@
             </div>
           </div>
 
-          <!-- Sponsors -->
-          <div class="bg-white rounded-xl shadow-lg p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">Partenaires</h3>
-            <div class="space-y-3">
-              <div class="flex items-center justify-center h-12 bg-gray-100 rounded-lg">
-                <span class="text-gray-500 font-medium">Décathlon</span>
-              </div>
-              <div class="flex items-center justify-center h-12 bg-gray-100 rounded-lg">
-                <span class="text-gray-500 font-medium">Nike Basketball</span>
-              </div>
-              <div class="flex items-center justify-center h-12 bg-gray-100 rounded-lg">
-                <span class="text-gray-500 font-medium">Spalding</span>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
