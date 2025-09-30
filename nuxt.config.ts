@@ -15,11 +15,11 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'CrossKultur - Association Manga & Événements',
+      title: 'Cross Kultur - Association Pop culture & Événements',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'CrossKultur organise des événements inspirés de situations et univers présents dans les mangas, transposés dans la réalité.' }
+        { name: 'description', content: 'Cross Kultur organise des événements inspirés de situations et univers présents dans la pop culture, transposés dans la réalité.' }
       ]
     }
   }

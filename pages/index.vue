@@ -5,10 +5,10 @@
       <div class="absolute inset-0 bg-black bg-opacity-20"></div>
       <div class="relative container mx-auto px-4 text-center text-white">
         <h1 class="text-5xl md:text-7xl font-bold mb-6">
-          Bienvenue chez <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-[#CB6CE6]">CrossKultur</span>
+          Bienvenue chez <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-[#CB6CE6]">Cross Kultur</span>
         </h1>
         <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-          L'association qui transforme l'univers des mangas en expériences réelles inoubliables
+          L'association qui transforme l'univers de la pop culture en expériences réelles inoubliables.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <NuxtLink to="/evenements" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
@@ -27,7 +27,7 @@
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold text-gray-800 mb-6">Qui sommes-nous ?</h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            CrossKultur est une association passionnée qui donne vie aux univers manga à travers des événements immersifs et créatifs.
+            Cross Kultur est une association passionnée qui donne vie aux univers manga à travers des événements immersifs et créatifs.
           </p>
         </div>
         

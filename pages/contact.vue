@@ -129,14 +129,25 @@
           </form>
 
           <!-- Message de confirmation -->
-          <div v-if="isSubmitted" class="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+          <div v-if="isSubmitted" class="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg fade-in">
             <div class="flex items-center">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
               <span class="font-medium">Message envoyé avec succès !</span>
             </div>
-            <p class="mt-2 text-sm">Nous vous répondrons dans les plus brefs délais.</p>
+            <p class="mt-2 text-sm">Nous vous répondrons dans les plus brefs délais (généralement sous 24h). Un email de confirmation a été envoyé à votre adresse.</p>
+          </div>
+
+          <!-- Message d'erreur -->
+          <div v-if="errorMessage" class="mt-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg fade-in">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="font-medium">Erreur d'envoi</span>
+            </div>
+            <p class="mt-2 text-sm">{{ errorMessage }}</p>
           </div>
         </div>
 
@@ -192,7 +203,7 @@
               </a>
 
               <!-- TikTok -->
-              <a href="https://www.tiktok.com/@ffi_officiel" class="flex items-center p-4 border border-gray-200 rounded-lg hover:border-gray-800 hover:bg-gray-50 transition-all duration-300 group">
+              <a href="https://www.tiktok.com/@crosskultur" class="flex items-center p-4 border border-gray-200 rounded-lg hover:border-gray-800 hover:bg-gray-50 transition-all duration-300 group">
                 <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center mr-3">
                   <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
@@ -280,35 +291,50 @@ const form = ref({
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
 
+const errorMessage = ref('')
+
 // Méthode de soumission du formulaire
 const submitForm = async () => {
   isSubmitting.value = true
+  errorMessage.value = ''
   
   try {
-    // Simulation d'envoi (remplacer par votre logique d'envoi réelle)
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    // Envoi des données à l'API
+    const response = await $fetch('/api/contact', {
+      method: 'POST',
+      body: {
+        firstName: form.value.firstName,
+        lastName: form.value.lastName,
+        email: form.value.email,
+        phone: form.value.phone,
+        subject: form.value.subject,
+        message: form.value.message
+      }
+    })
     
-    // Réinitialiser le formulaire
-    form.value = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-      newsletter: false
+    if (response.success) {
+      // Réinitialiser le formulaire
+      form.value = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+        newsletter: false
+      }
+      
+      isSubmitted.value = true
+      
+      // Masquer le message de confirmation après 8 secondes
+      setTimeout(() => {
+        isSubmitted.value = false
+      }, 8000)
     }
-    
-    isSubmitted.value = true
-    
-    // Masquer le message de confirmation après 5 secondes
-    setTimeout(() => {
-      isSubmitted.value = false
-    }, 5000)
     
   } catch (error) {
     console.error('Erreur lors de l\'envoi du formulaire:', error)
-    // Gérer l'erreur ici
+    errorMessage.value = error.data?.message || 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.'
   } finally {
     isSubmitting.value = false
   }

@@ -67,7 +67,7 @@ export const events = [
     status: "upcoming",
     type: "sport",
     category: "sport",
-    imageUrl: "/ffi2.png",
+    imageUrl: "/ffi.jpeg",
     location: "Paris",
     duration: "Après-midi",
     price: "35€",
