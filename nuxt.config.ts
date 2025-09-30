@@ -7,6 +7,15 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@vueuse/nuxt'
   ],
+  runtimeConfig: {
+    // Variables privées (accessibles seulement côté serveur)
+    adminPin: process.env.ADMIN_PIN || '0192',
+    resendApiKey: process.env.RESEND_API_KEY,
+    // Variables publiques (accessibles côté client avec NUXT_PUBLIC_ prefix)
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+    }
+  },
   googleFonts: {
     families: {
       'Inter': [400, 500, 600, 700],

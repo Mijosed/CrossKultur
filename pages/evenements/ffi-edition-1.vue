@@ -133,7 +133,7 @@
               </div>
               <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
                 <img 
-                  src="/ffi2.png" 
+                  src="/ffi.png" 
                   alt="Techniques spéciales FFI"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 >
@@ -163,7 +163,7 @@
               </div>
               <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
                 <img 
-                  src="/ffi2.png" 
+                  src="/ffi.png" 
                   alt="Remise des prix"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 >

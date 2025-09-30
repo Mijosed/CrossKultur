@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String?
+  date        DateTime
+  location    String?
+  maxTickets  Int
+  price       Float    @default(0.0)
+  imageUrl    String?
+  status      String   @default("upcoming") // "upcoming", "active", "past", "cancelled"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  tickets     Ticket[]
+  
+  @@map("events")
+}
+
+model Ticket {
+  id         String   @id @default(cuid())
+  ticketCode String   @unique // Code unique du billet (plus court, pour QR code)
+  
+  // Informations du participant
+  firstName String
+  lastName  String
+  email     String
+  phone     String?
+  
+  // Informations du billet
+  status    String   @default("valid") // "valid", "used", "cancelled"
+  qrCode    String?  // Base64 du QR code
+  
+  // Relations
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  scans     TicketScan[]
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  usedAt    DateTime?
+  
+  @@map("tickets")
+}
+
+model TicketScan {
+  id        String   @id @default(cuid())
+  ticketId  String
+  ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  scannedAt DateTime @default(now())
+  scannedBy String?  // Nom de la personne qui a scanné
+  location  String?  // Lieu du scan
+  scanType  String   @default("checkin") // "checkin", "checkout", etc.
+  
+  @@map("ticket_scans")
+}
