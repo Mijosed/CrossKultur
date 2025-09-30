@@ -6,7 +6,7 @@ import QRCode from 'qrcode'
 const prisma = new PrismaClient()
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event) => {  
   // Vérifier la méthode HTTP
   if (getMethod(event) !== 'POST') {
     throw createError({
@@ -15,8 +15,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const body = await readBody(event)
-  
+  const body = await readBody(event)  
   // Validation des données requises
   const { eventId, firstName, lastName, email, phone } = body
   
@@ -106,19 +105,21 @@ export default defineEventHandler(async (event) => {
       email: ticket.email
     })
     
-    const qrCodeDataURL = await QRCode.toDataURL(qrCodeData, {
+    // Générer le QR code comme buffer pour attachment
+    const qrCodeBuffer = await QRCode.toBuffer(qrCodeData, {
       width: 200,
       margin: 2,
       color: {
         dark: '#000000',
         light: '#FFFFFF'
-      }
+      },
+      type: 'png'
     })
 
     // Envoyer l'email de confirmation avec le billet
     try {
-      await resend.emails.send({
-        from: 'CrossKultur <noreply@crosskultur.com>',
+      const emailResult = await resend.emails.send({
+        from: 'CrossKultur <contact@crosskultur.fr>',
         to: [ticket.email],
         subject: `Votre billet pour ${ticket.event.title}`,
         html: `
@@ -151,20 +152,26 @@ export default defineEventHandler(async (event) => {
             </div>
             
             <div style="text-align: center; margin-bottom: 25px;">
-              <h3 style="color: #333; margin-bottom: 15px;">QR Code pour l'entrée</h3>
-              <img src="${qrCodeDataURL}" alt="QR Code" style="max-width: 200px; border: 1px solid #ddd; border-radius: 8px;" />
-              <p style="color: #666; font-size: 14px; margin-top: 10px;">
-                Présentez ce QR code à l'entrée de l'événement
-              </p>
+              <div style="background: #f0f9ff; border: 2px dashed #0ea5e9; border-radius: 12px; padding: 20px;">
+                <h3 style="color: #0c4a6e; margin: 0 0 10px 0;">📱 QR Code d'entrée</h3>
+                <p style="color: #0369a1; font-size: 16px; margin: 0 0 10px 0;">
+                  <strong>Votre QR code est en pièce jointe de cet email</strong>
+                </p>
+                <p style="color: #075985; font-size: 14px; margin: 0;">
+                  📎 Téléchargez le fichier "qrcode.png" ci-joint<br>
+                  📱 Présentez-le à l'entrée de l'événement
+                </p>
+              </div>
             </div>
             
             <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
-              <h4 style="margin: 0 0 10px 0; color: #1976d2;">Informations importantes</h4>
+              <h4 style="margin: 0 0 10px 0; color: #1976d2;">📋 Instructions importantes</h4>
               <ul style="margin: 0; padding-left: 20px; color: #666;">
-                <li>Ce billet est nominatif et non transférable</li>
-                <li>Veuillez arriver 15 minutes avant le début de l'événement</li>
-                <li>Conservez ce email, il fait office de billet d'entrée</li>
-                <li>En cas de problème, contactez-nous à contact@crosskultur.com</li>
+                <li><strong>QR Code :</strong> Téléchargez la pièce jointe "qrcode.png" et présentez-la à l'entrée</li>
+                <li><strong>Billet :</strong> Ce billet est nominatif et non transférable</li>
+                <li><strong>Arrivée :</strong> Veuillez arriver 15 minutes avant le début</li>
+                <li><strong>Sauvegarde :</strong> Conservez cet email et le QR code sur votre téléphone</li>
+                <li><strong>Contact :</strong> En cas de problème, contactez-nous à contact@crosskultur.fr</li>
               </ul>
             </div>
             
@@ -173,12 +180,21 @@ export default defineEventHandler(async (event) => {
               <p>L'équipe CrossKultur</p>
             </div>
           </div>
-        `
+        `,
+        attachments: [
+          {
+            filename: 'qrcode.png',
+            content: qrCodeBuffer,
+            content_id: 'qrcode',
+            disposition: 'inline'
+          }
+        ]
       })
     } catch (emailError) {
-      console.error('Erreur lors de l\'envoi de l\'email:', emailError)
+      console.error('❌ [EMAIL] Erreur lors de l\'envoi de l\'email:', emailError)
       // On continue même si l'email échoue, le ticket est créé
     }
+    
     
     return {
       success: true,

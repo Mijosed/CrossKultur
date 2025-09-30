@@ -54,11 +54,11 @@ export default defineEventHandler(async (event) => {
     const event = await prisma.event.create({
       data: {
         slug: 'winter-cup',
-        title: 'Winter Cup 2026',
-        description: 'Tournoi de basket-ball inspiré de Kuroko no Basket et Slam Dunk avec techniques spéciales et gameplay intensif. Affrontez-vous dans des matchs épiques où les techniques spéciales et l\'esprit d\'équipe feront la différence !',
-        date: new Date('2026-01-20T14:00:00.000Z'),
-        location: 'Complexe Sportif CrossKultur',
-        maxTickets: 64,
+        title: 'Winter Cup',
+        description: 'Tournoi de basket-ball inspiré de mangas tel que Kuroko no Basket et Slam Dunk.',
+        date: new Date('2025-11-01T13:00:00.000Z'),
+        location: 'Ile-de-France',
+        maxTickets: 200,
         price: 0.0,
         imageUrl: '/winter_cup.png',
         status: 'upcoming'
