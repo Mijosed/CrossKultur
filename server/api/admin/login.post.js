@@ -30,26 +30,18 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // Debug: afficher les valeurs pour diagnostiquer
-  console.log('PIN reçu:', JSON.stringify(pin), 'Type:', typeof pin, 'Longueur:', pin.length)
-  console.log('PIN attendu:', JSON.stringify(adminPin), 'Type:', typeof adminPin, 'Longueur:', adminPin.length)
-  
   // Comparer les PINs (conversion en string pour être sûr)
   const pinStr = String(pin).trim()
   const adminPinStr = String(adminPin).trim()
   
   if (pinStr === adminPinStr) {
-    console.log('✅ Authentification réussie')
     return {
       success: true,
       message: 'Authentification réussie'
     }
   } else {
-    // Log des tentatives d'accès non autorisées avec plus de détails
-    console.warn(`❌ Tentative d'accès admin échouée:`)
-    console.warn(`  PIN reçu: "${pinStr}" (${pinStr.length} chars)`)
-    console.warn(`  PIN attendu: "${adminPinStr}" (${adminPinStr.length} chars)`)
-    console.warn(`  Heure: ${new Date().toISOString()}`)
+    // Log des tentatives d'accès non autorisées (en production)
+    console.warn(`Tentative d'accès admin non autorisée à ${new Date().toISOString()}`)
     
     return {
       success: false,

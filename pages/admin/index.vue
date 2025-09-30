@@ -101,8 +101,49 @@
         </div>
       </div>
 
+      <!-- Initialisation base de données -->
+      <div v-if="eventStats.length === 0 && !loading" class="bg-white rounded-xl shadow-lg mb-8">
+        <div class="p-6 border-b border-gray-200">
+          <h2 class="text-xl font-bold text-gray-800">Initialisation</h2>
+        </div>
+        <div class="p-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Aucun événement trouvé</h3>
+            <p class="text-gray-600 mb-6">Initialisez la base de données pour créer l'événement Winter Cup.</p>
+            
+            <button 
+              @click="initDatabase"
+              :disabled="isInitializing"
+              :class="isInitializing ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'"
+              class="text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            >
+              <span v-if="isInitializing" class="flex items-center justify-center">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Initialisation...
+              </span>
+              <span v-else>
+                🚀 Initialiser la base de données
+              </span>
+            </button>
+            
+            <!-- Message de retour -->
+            <div v-if="initMessage" class="mt-4 p-3 rounded-lg text-sm" :class="initMessage.includes('Erreur') ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'">
+              {{ initMessage }}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Statistiques par événement -->
-      <div class="bg-white rounded-xl shadow-lg mb-8">
+      <div v-if="eventStats.length > 0" class="bg-white rounded-xl shadow-lg mb-8">
         <div class="p-6 border-b border-gray-200">
           <h2 class="text-xl font-bold text-gray-800">Statistiques par événement</h2>
         </div>
@@ -254,6 +295,8 @@ const tickets = ref([])
 const stats = ref({})
 const eventStats = ref([])
 const loading = ref(true)
+const isInitializing = ref(false)
+const initMessage = ref('')
 
 // Methods
 const loadData = async () => {
@@ -281,6 +324,36 @@ const logout = () => {
   const isAuthenticated = useCookie('admin-authenticated')
   isAuthenticated.value = false
   navigateTo('/admin/login')
+}
+
+const initDatabase = async () => {
+  if (isInitializing.value) return
+  
+  const confirmed = confirm('Voulez-vous initialiser la base de données avec l\'événement Winter Cup ?')
+  if (!confirmed) return
+  
+  try {
+    isInitializing.value = true
+    initMessage.value = ''
+    
+    const response = await $fetch('/api/admin/init-db', {
+      method: 'POST',
+      body: { pin: '0192' }
+    })
+    
+    if (response.success) {
+      initMessage.value = response.message
+      if (!response.alreadyExists) {
+        // Recharger les données pour afficher le nouvel événement
+        await loadData()
+      }
+    }
+  } catch (error) {
+    console.error('Erreur initialisation:', error)
+    initMessage.value = 'Erreur: ' + (error.data?.message || error.message || 'Erreur inconnue')
+  } finally {
+    isInitializing.value = false
+  }
 }
 
 const formatDate = (dateString) => {

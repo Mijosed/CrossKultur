@@ -11,7 +11,9 @@ export default defineNuxtConfig({
     // Variables privées (accessibles seulement côté serveur)
     adminPin: process.env.ADMIN_PIN || '0192',
     resendApiKey: process.env.RESEND_API_KEY,
-    // Variables publiques (accessibles côté client avec NUXT_PUBLIC_ prefix)
+    // Base de données : CROSS_URL pour Vercel, DATABASE_URL pour local
+    databaseUrl: process.env.CROSS_URL || process.env.DATABASE_URL,
+    // Variables publiques (accessibles côté client avec NUXT_PUBLIC_ prefix)  
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
     }
