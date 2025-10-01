@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h3 class="text-xl font-bold mb-4">CrossKultur</h3>
+          <h3 class="text-xl font-bold mb-4">Cross Kultur </h3>
           <p class="text-gray-300">Association qui organise des événements inspirés de la pop-culture, transposés dans la réalité.</p>
         </div>
         <div>

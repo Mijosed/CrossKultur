@@ -69,7 +69,7 @@
               </p>
               <p>
                 Attendez-vous à des retournements de situation dignes des meilleurs anime, avec des 
-                "techniques spéciales" autorisées et des moments de pure adrénaline !
+                "actions spéciales" autorisées et des moments de pure adrénaline !
               </p>
             </div>
           </section>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="ml-4">
                   <h4 class="font-semibold text-gray-800">Échauffement et démonstrations</h4>
-                  <p class="text-sm text-gray-600">Apprentissage des techniques spéciales</p>
+                  <p class="text-sm text-gray-600">Apprentissage des actions spéciales</p>
                 </div>
               </div>
               <div class="flex items-center p-4 border border-gray-200 rounded-lg">
@@ -240,10 +240,10 @@
 <script setup>
 // Métadonnées de la page
 useSeoMeta({
-  title: 'Tournoi Balle au Prisonnier - CrossKultur',
-  ogTitle: 'Tournoi Balle au Prisonnier - CrossKultur',
-  description: 'Participez au tournoi de balle au prisonnier le plus épique ! Techniques spéciales, esprit manga et fun garanti.',
-  ogDescription: 'Participez au tournoi de balle au prisonnier le plus épique ! Techniques spéciales, esprit manga et fun garanti.',
+  title: 'Tournoi Balle au Prisonnier - Cross Kultur ',
+  ogTitle: 'Tournoi Balle au Prisonnier - Cross Kultur ',
+  description: 'Participez au tournoi de balle au prisonnier le plus épique ! Actions spéciales, esprit manga et fun garanti.',
+  ogDescription: 'Participez au tournoi de balle au prisonnier le plus épique ! Actions spéciales, esprit manga et fun garanti.',
 })
 </script>
 

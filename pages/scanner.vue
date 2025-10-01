@@ -58,14 +58,40 @@
                   playsinline
                 ></video>
                 
+                <!-- Canvas caché pour la détection QR -->
+                <canvas 
+                  ref="canvasElement" 
+                  class="hidden"
+                ></canvas>
+                
                 <!-- Scanner overlay -->
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="relative">
-                    <div class="w-48 h-48 sm:w-64 sm:h-64 border-2 border-white rounded-lg"></div>
-                    <div class="absolute top-0 left-0 w-6 h-6 sm:w-8 sm:h-8 border-t-4 border-l-4 border-purple-400 rounded-tl-lg"></div>
-                    <div class="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 border-t-4 border-r-4 border-purple-400 rounded-tr-lg"></div>
-                    <div class="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 border-b-4 border-l-4 border-purple-400 rounded-bl-lg"></div>
-                    <div class="absolute bottom-0 right-0 w-6 h-6 sm:w-8 sm:h-8 border-b-4 border-r-4 border-purple-400 rounded-br-lg"></div>
+                    <div :class="[
+                      'w-48 h-48 sm:w-64 sm:h-64 border-2 rounded-lg transition-all duration-300',
+                      isProcessing ? 'border-green-400 shadow-lg shadow-green-400/50' : 'border-white'
+                    ]"></div>
+                    <div :class="[
+                      'absolute top-0 left-0 w-6 h-6 sm:w-8 sm:h-8 border-t-4 border-l-4 rounded-tl-lg transition-colors duration-300',
+                      isProcessing ? 'border-green-400' : 'border-purple-400'
+                    ]"></div>
+                    <div :class="[
+                      'absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 border-t-4 border-r-4 rounded-tr-lg transition-colors duration-300',
+                      isProcessing ? 'border-green-400' : 'border-purple-400'
+                    ]"></div>
+                    <div :class="[
+                      'absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 border-b-4 border-l-4 rounded-bl-lg transition-colors duration-300',
+                      isProcessing ? 'border-green-400' : 'border-purple-400'
+                    ]"></div>
+                    <div :class="[
+                      'absolute bottom-0 right-0 w-6 h-6 sm:w-8 sm:h-8 border-b-4 border-r-4 rounded-br-lg transition-colors duration-300',
+                      isProcessing ? 'border-green-400' : 'border-purple-400'
+                    ]"></div>
+                    
+                    <!-- Animation de scan -->
+                    <div v-if="cameraActive && scanStatus" class="absolute inset-0 flex items-center justify-center">
+                      <div class="w-full h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-pulse opacity-50"></div>
+                    </div>
                   </div>
                 </div>
                 
@@ -74,6 +100,13 @@
                   <div class="text-center text-white">
                     <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-4"></div>
                     <p>Initialisation de la caméra...</p>
+                  </div>
+                </div>
+                
+                <!-- Status indicator -->
+                <div v-if="cameraReady && scanStatus" class="absolute bottom-4 left-4 right-4">
+                  <div class="bg-black bg-opacity-50 text-white px-3 py-2 rounded-lg text-sm text-center">
+                    {{ scanStatus }}
                   </div>
                 </div>
               </div>
@@ -176,12 +209,20 @@
             </div>
           </div>
 
-          <button 
-            @click="clearResult"
-            class="w-full bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors"
-          >
-            Scanner un autre billet
-          </button>
+          <div class="flex gap-4">
+            <button 
+              @click="clearResult"
+              class="flex-1 bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Scanner un autre billet
+            </button>
+            <button 
+              @click="useManualInput = true; lastResult = null"
+              class="flex-1 bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors"
+            >
+              Saisie manuelle
+            </button>
+          </div>
         </div>
 
         <!-- Instructions -->
@@ -215,6 +256,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import jsQR from 'jsqr'
 
 // Protection avec middleware
 definePageMeta({
@@ -223,14 +265,17 @@ definePageMeta({
 
 // State
 const videoElement = ref(null)
+const canvasElement = ref(null)
 const cameraActive = ref(false)
 const cameraReady = ref(false)
 const useManualInput = ref(false)
 const manualQrInput = ref('')
 const isProcessing = ref(false)
 const lastResult = ref(null)
+const scanStatus = ref('')
 let stream = null
 let scanInterval = null
+let animationFrame = null
 
 // Methods
 const startCamera = async () => {
@@ -269,8 +314,13 @@ const stopCamera = () => {
     clearInterval(scanInterval)
     scanInterval = null
   }
+  if (animationFrame) {
+    cancelAnimationFrame(animationFrame)
+    animationFrame = null
+  }
   cameraActive.value = false
   cameraReady.value = false
+  scanStatus.value = ''
 }
 
 const toggleCamera = () => {
@@ -282,16 +332,51 @@ const toggleCamera = () => {
 }
 
 const startQrDetection = () => {
-  // Note: Dans un vrai environnement de production, vous utiliseriez une librairie
-  // comme jsQR ou qr-scanner pour détecter automatiquement les QR codes
-  // Pour cet exemple, nous simulons la détection
-  
-  scanInterval = setInterval(() => {
-    if (cameraActive.value && videoElement.value && videoElement.value.videoWidth > 0) {
-      // Ici vous ajouteriez la logique de détection QR avec une librairie appropriée
-      // Pour l'instant, nous laissons la détection manuelle
+  const detectQR = () => {
+    if (!cameraActive.value || !videoElement.value || !canvasElement.value) {
+      animationFrame = requestAnimationFrame(detectQR)
+      return
     }
-  }, 500)
+
+    const video = videoElement.value
+    const canvas = canvasElement.value
+    
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+      const context = canvas.getContext('2d')
+      canvas.width = video.videoWidth
+      canvas.height = video.videoHeight
+      
+      // Dessiner la frame vidéo sur le canvas
+      context.drawImage(video, 0, 0, canvas.width, canvas.height)
+      
+      // Obtenir les données d'image
+      const imageData = context.getImageData(0, 0, canvas.width, canvas.height)
+      
+      // Détecter le QR code
+      const code = jsQR(imageData.data, imageData.width, imageData.height, {
+        inversionAttempts: "dontInvert",
+      })
+      
+      if (code) {
+        scanStatus.value = 'QR Code détecté !'
+        console.log('QR Code trouvé :', code.data)
+        
+        // Arrêter la détection temporairement pour éviter les doublons
+        cameraActive.value = false
+        
+        // Traiter le QR code
+        processQrCode(code.data)
+        return
+      } else {
+        scanStatus.value = 'Recherche de QR code...'
+      }
+    }
+    
+    // Continuer la détection
+    animationFrame = requestAnimationFrame(detectQR)
+  }
+  
+  detectQR()
 }
 
 const processQrCode = async (qrData) => {
@@ -299,6 +384,7 @@ const processQrCode = async (qrData) => {
   
   isProcessing.value = true
   lastResult.value = null
+  scanStatus.value = 'Vérification du billet...'
   
   try {
     const response = await $fetch('/api/tickets/checkin', {
@@ -310,14 +396,30 @@ const processQrCode = async (qrData) => {
     
     lastResult.value = response
     
+    // Jouer un son en fonction du résultat
+    if (response.success) {
+      playSuccessSound()
+      scanStatus.value = 'Billet valide !'
+    } else {
+      playErrorSound()
+      scanStatus.value = 'Billet invalide'
+    }
+    
   } catch (error) {
     console.error('Erreur check-in:', error)
     lastResult.value = {
       success: false,
       message: error.data?.message || 'Erreur lors de la vérification du billet'
     }
+    playErrorSound()
+    scanStatus.value = 'Erreur de vérification'
   } finally {
     isProcessing.value = false
+    
+    // Attendre un peu avant de permettre un nouveau scan
+    setTimeout(() => {
+      scanStatus.value = ''
+    }, 3000)
   }
 }
 
@@ -352,6 +454,30 @@ const processManualInput = async () => {
 
 const clearResult = () => {
   lastResult.value = null
+  // Redémarrer automatiquement la caméra pour un nouveau scan
+  if (!useManualInput.value) {
+    setTimeout(() => {
+      startCamera()
+    }, 500)
+  }
+}
+
+const playSuccessSound = () => {
+  try {
+    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn9zfrWEaBkOX2u7YcykIGGa37+OWNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn9zfrWEaBkOX2u7YcykIGGa37+OWNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn9zfrWEaBkOX2u7YcykIGGa37+OWNwgZaLvt559NEAxQp+PwtmMcBjgD')
+    audio.play().catch(() => {}) // Ignore errors si l'audio ne peut pas être joué
+  } catch (error) {
+    // Ignore les erreurs audio
+  }
+}
+
+const playErrorSound = () => {
+  try {
+    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiF')
+    audio.play().catch(() => {})
+  } catch (error) {
+    // Ignore les erreurs audio
+  }
 }
 
 const formatDateTime = (dateString) => {
@@ -373,7 +499,7 @@ const logout = () => {
 
 // SEO
 useSeoMeta({
-  title: 'Scanner QR Code - CrossKultur',
+  title: 'Scanner QR Code - Cross Kultur ',
   description: 'Scanner de QR codes pour la validation des billets',
   robots: 'noindex'
 })

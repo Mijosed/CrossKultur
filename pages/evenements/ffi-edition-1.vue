@@ -22,7 +22,7 @@
           <h1 class="text-5xl font-bold mb-4">FFI Edition n°1</h1>
           <p class="text-xl opacity-90 mb-6">
             Première édition de notre tournoi Football Frontier International, inspiré d'Inazuma Eleven. 
-            Les équipes s'affrontent dans des matchs palpitants avec des techniques spéciales !
+            Les équipes s'affrontent dans des matchs palpitants !
           </p>
           <div class="flex flex-wrap gap-4">
             <div class="flex items-center text-white/80">
@@ -36,7 +36,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              Centre sportif Didot, Paris
+              Centre sportif Didot, Ile de France
             </div>
             <div class="flex items-center text-white/80">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,7 +63,7 @@
                 une ambiance unique mêlant sport et manga.
               </p>
               <p class="mb-4">
-                Les équipes se sont affrontées avec des techniques spéciales, des stratégies élaborées et 
+                Les équipes se sont affrontées avec des stratégies élaborées et 
                 un fair-play exemplaire. Chaque match était une véritable aventure où l'esprit d'équipe 
                 et la créativité étaient récompensés.
               </p>
@@ -99,7 +99,7 @@
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Moments forts</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="border border-gray-200 rounded-lg p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">⚡ Technique la plus spectaculaire</h3>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">⚡ Action la plus spectaculaire</h3>
                 <p class="text-gray-600">Le "Tir de l'Empereur" exécuté en finale, un moment inoubliable !</p>
               </div>
               <div class="border border-gray-200 rounded-lg p-6">
@@ -134,11 +134,11 @@
               <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
                 <img 
                   src="/ffi.png" 
-                  alt="Techniques spéciales FFI"
+                  alt="Actions FFI"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 >
                 <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span class="text-white font-semibold">Techniques spéciales</span>
+                  <span class="text-white font-semibold">Moments forts</span>
                 </div>
               </div>
               <div class="aspect-square rounded-lg overflow-hidden relative group cursor-pointer">
@@ -209,7 +209,7 @@
                 <span class="text-xl font-semibold">127</span>
               </div>
               <div class="flex justify-between items-center">
-                <span class="text-gray-600">Techniques spéciales</span>
+                <span class="text-gray-600">Moments forts</span>
                 <span class="text-xl font-semibold">42</span>
               </div>
             </div>
@@ -255,10 +255,10 @@
 <script setup>
 // Métadonnées de la page
 useSeoMeta({
-  title: 'FFI Edition n°1 - CrossKultur',
-  ogTitle: 'FFI Edition n°1 - CrossKultur',
-  description: 'Revivez la première édition du Football Frontier International de CrossKultur. Tournoi de football inspiré d\'Inazuma Eleven.',
-  ogDescription: 'Revivez la première édition du Football Frontier International de CrossKultur. Tournoi de football inspiré d\'Inazuma Eleven.',
+  title: 'FFI Edition n°1 - Cross Kultur ',
+  ogTitle: 'FFI Edition n°1 - Cross Kultur ',
+  description: 'Revivez la première édition du Football Frontier International de Cross Kultur . Tournoi de football inspiré d\'Inazuma Eleven.',
+  ogDescription: 'Revivez la première édition du Football Frontier International de Cross Kultur . Tournoi de football inspiré d\'Inazuma Eleven.',
 })
 </script>
 

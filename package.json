@@ -16,6 +16,7 @@
     "@vueuse/nuxt": "^13.8.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.3",
+    "jsqr": "^1.4.0",
     "nanoid": "^5.1.6",
     "nuxt": "^4.0.3",
     "qrcode": "^1.5.4",

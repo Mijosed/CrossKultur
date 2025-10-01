@@ -6,7 +6,7 @@
         <h1 class="text-5xl font-bold text-gray-800 mb-6">Roadmap des Événements</h1>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
           Découvrez notre planning d'événements passés, en cours et à venir. 
-          Suivez l'évolution de CrossKultur et ne ratez aucune aventure !
+          Suivez l'évolution de Cross Kultur  et ne ratez aucune aventure !
         </p>
       </div>
 
@@ -84,37 +84,6 @@
       </div>
 
     </div>
-
-    <!-- Modal de détail d'événement -->
-    <div v-if="selectedEvent" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" @click="closeModal">
-      <div class="bg-white rounded-xl max-w-2xl w-full max-h-96 overflow-y-auto" @click.stop>
-        <div class="p-6">
-          <div class="flex justify-between items-start mb-4">
-            <h3 class="text-2xl font-bold text-gray-800">{{ selectedEvent.title }}</h3>
-            <button @click="closeModal" class="text-gray-400 hover:text-gray-600">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
-          </div>
-          <p class="text-gray-600 mb-4">{{ selectedEvent.fullDescription }}</p>
-          <div class="grid grid-cols-2 gap-4 text-sm">
-            <div>
-              <strong>Date:</strong> {{ formatDate(selectedEvent.date) }}
-            </div>
-            <div>
-              <strong>Statut:</strong> {{ getEventStatusText(selectedEvent.status) }}
-            </div>
-            <div v-if="selectedEvent.location">
-              <strong>Lieu:</strong> {{ selectedEvent.location }}
-            </div>
-            <div v-if="selectedEvent.participants">
-              <strong>Participants:</strong> {{ selectedEvent.participants }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -124,15 +93,14 @@ import { events } from '~/data/events.js'
 
 // Métadonnées de la page
 useSeoMeta({
-  title: 'Roadmap - CrossKultur',
-  ogTitle: 'Roadmap - CrossKultur',
-  description: 'Découvrez la roadmap des événements CrossKultur. Événements passés, en cours et à venir.',
-  ogDescription: 'Découvrez la roadmap des événements CrossKultur. Événements passés, en cours et à venir.',
+  title: 'Roadmap - Cross Kultur ',
+  ogTitle: 'Roadmap - Cross Kultur ',
+  description: 'Découvrez la roadmap des événements Cross Kultur . Événements passés, en cours et à venir.',
+  ogDescription: 'Découvrez la roadmap des événements Cross Kultur . Événements passés, en cours et à venir.',
 })
 
 // État réactif
 const activeFilter = ref('all')
-const selectedEvent = ref(null)
 
 // Utilisation des données centralisées
 const allEvents = ref(events)
@@ -150,11 +118,8 @@ const filterEvents = (filter) => {
 }
 
 const selectEvent = (event) => {
-  selectedEvent.value = event
-}
-
-const closeModal = () => {
-  selectedEvent.value = null
+  // Navigation vers la page de détail de l'événement
+  navigateTo(`/evenements/${event.slug}`)
 }
 
 const formatDate = (dateString) => {
@@ -171,23 +136,7 @@ const getEventStatusColor = (status) => {
   }
 }
 
-const getEventStatusBadge = (status) => {
-  switch (status) {
-    case 'upcoming': return 'bg-blue-100 text-blue-700'
-    case 'ongoing': return 'bg-green-100 text-green-700'
-    case 'past': return 'bg-gray-100 text-gray-700'
-    default: return 'bg-purple-100 text-purple-700'
-  }
-}
 
-const getEventStatusText = (status) => {
-  switch (status) {
-    case 'upcoming': return 'À venir'
-    case 'ongoing': return 'En cours'
-    case 'past': return 'Terminé'
-    default: return 'Inconnu'
-  }
-}
 
 // Statistiques calculées dynamiquement
 const stats = computed(() => ({

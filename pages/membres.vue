@@ -5,7 +5,7 @@
       <div class="text-center mb-16">
         <h1 class="text-5xl font-bold text-gray-800 mb-6">Membres de l'Association</h1>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Découvrez l'équipe passionnée qui fait vivre CrossKultur. 
+          Découvrez l'équipe passionnée qui fait vivre Cross Kultur . 
           Chaque membre apporte ses compétences uniques pour créer des expériences extraordinaires.
         </p>
       </div>
@@ -132,7 +132,7 @@
             </div>
 
             <div>
-              <h4 class="font-semibold text-gray-800 mb-2">Contribution à CrossKultur</h4>
+              <h4 class="font-semibold text-gray-800 mb-2">Contribution à Cross Kultur </h4>
               <p class="text-gray-600">{{ selectedMember.contribution }}</p>
             </div>
 
@@ -152,10 +152,10 @@ import { ref, computed } from 'vue'
 
 // Métadonnées de la page
 useSeoMeta({
-  title: 'Membres - CrossKultur',
-  ogTitle: 'Membres - CrossKultur',
-  description: 'Découvrez l\'équipe passionnée de CrossKultur. Nos membres et leurs rôles dans l\'association.',
-  ogDescription: 'Découvrez l\'équipe passionnée de CrossKultur. Nos membres et leurs rôles dans l\'association.',
+  title: 'Membres - Cross Kultur ',
+  ogTitle: 'Membres - Cross Kultur ',
+  description: 'Découvrez l\'équipe passionnée de Cross Kultur . Nos membres et leurs rôles dans l\'association.',
+  ogDescription: 'Découvrez l\'équipe passionnée de Cross Kultur . Nos membres et leurs rôles dans l\'association.',
 })
 
 // État réactif
@@ -171,9 +171,9 @@ const members = ref([
     role: "bureau",
     initials: "K",
     avatarColor: "bg-gradient-to-br from-purple-500 to-pink-500",
-    shortDescription: "Passionnée de mangas depuis l'enfance, il a créé CrossKultur pour partager sa passion.",
-    fullDescription: "Kimiaa a fondé CrossKultur en 2025 avec la vision de créer un pont entre l'univers des mangas et la réalité. Diplômée en événementiel, elle apporte son expertise pour créer des expériences uniques et mémorables.",
-    skills: ["Leadership", "Événementiel", "Gestion de projet", "Communication"],
+    shortDescription: "Passionnée de mangas depuis l'enfance, il a créé Cross Kultur  pour partager sa passion.",
+    fullDescription: "Kimiaa a fondé Cross Kultur  en 2025 avec la vision de créer un pont entre l'univers des mangas et la réalité. Diplômée en événementiel, elle apporte son expertise pour créer des expériences uniques et mémorables.",
+    skills: [],
     contribution: "Vision stratégique, coordination générale des événements, relations partenaires",
     favoriteAnime: "Fullmetal Alchemist, One Piece, Studio Ghibli",
     social: {
@@ -190,8 +190,8 @@ const members = ref([
     initials: "W",
     avatarColor: "bg-gradient-to-br from-blue-500 to-purple-500",
     shortDescription: "Expert en logistique et organisation, il s'assure que chaque événement se déroule parfaitement.",
-    fullDescription: "Watch est le pilier logistique de CrossKultur. Avec son expérience en gestion d'événements et sa passion pour les détails, il transforme les idées créatives en réalité concrète.",
-    skills: ["Logistique", "Organisation", "Gestion budgétaire", "Coordination"],
+    fullDescription: "Watch est le pilier logistique de Cross Kultur . Avec son expérience en gestion d'événements et sa passion pour les détails, il transforme les idées créatives en réalité concrète.",
+    skills: [],
     contribution: "Planification logistique, gestion des budgets, coordination des équipes terrain",
     favoriteAnime: "Attack on Titan, Death Note, Jujutsu Kaisen",
     social: {

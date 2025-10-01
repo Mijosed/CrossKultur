@@ -119,13 +119,13 @@ export default defineEventHandler(async (event) => {
     // Envoyer l'email de confirmation avec le billet
     try {
       const emailResult = await resend.emails.send({
-        from: 'CrossKultur <contact@crosskultur.fr>',
+        from: 'Cross Kultur  <contact@crosskultur.fr>',
         to: [ticket.email],
         subject: `Votre billet pour ${ticket.event.title}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
             <div style="text-align: center; margin-bottom: 30px;">
-              <h1 style="color: #7C3AED; margin: 0;">CrossKultur</h1>
+              <h1 style="color: #7C3AED; margin: 0;">Cross Kultur </h1>
               <p style="color: #666; margin: 5px 0 0 0;">Votre billet électronique</p>
             </div>
             
@@ -177,7 +177,7 @@ export default defineEventHandler(async (event) => {
             
             <div style="text-align: center; border-top: 1px solid #eee; padding-top: 20px; color: #999; font-size: 14px;">
               <p>Merci de votre inscription !</p>
-              <p>L'équipe CrossKultur</p>
+              <p>L'équipe Cross Kultur </p>
             </div>
           </div>
         `,

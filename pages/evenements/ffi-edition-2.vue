@@ -17,8 +17,8 @@
           </div>
           <h1 class="text-5xl font-bold mb-4">FFI Edition n°2</h1>
           <p class="text-xl opacity-90 mb-6">
-            Deuxième édition du Football Frontier International avec encore plus d'équipes, 
-            de nouvelles techniques spéciales et des défis inédits. Préparez-vous à une expérience encore plus intense !
+            Deuxième édition du Football Frontier International avec encore plus d'équipes 
+            et des défis inédits. Préparez-vous à une expérience encore plus intense !
           </p>
           <div class="flex flex-wrap gap-4">
             <div class="flex items-center text-white/80">
@@ -32,7 +32,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              Paris, France
+              Ile de France
             </div>
             <div class="flex items-center text-white/80">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,7 +60,7 @@
               </p>
               <p class="mb-4">
                 Cette deuxième édition accueillera 66 participants répartis en 12 équipes, soit 50% 
-                de joueurs en plus que la première fois ! De nouvelles techniques spéciales ont été 
+                de joueurs en plus que la première fois ! De nouvelles stratégies ont été 
                 développées, de nouveaux défis vous attendent, et l'organisation a été optimisée pour 
                 un confort maximum.
               </p>
@@ -142,9 +142,9 @@
             </div>
           </section>
 
-          <!-- Techniques spéciales -->
+          <!-- Moments forts -->
           <section class="bg-white rounded-xl shadow-lg p-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Techniques spéciales inédites</h2>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Actions spéciales inédites</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div class="aspect-square bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center">
                 <span class="text-white font-semibold text-center">Galaxy<br>Storm</span>
@@ -274,8 +274,8 @@
 <script setup>
 // Métadonnées de la page
 useSeoMeta({
-  title: 'FFI Edition n°2 - CrossKultur',
-  ogTitle: 'FFI Edition n°2 - CrossKultur',
+  title: 'FFI Edition n°2 - Cross Kultur ',
+  ogTitle: 'FFI Edition n°2 - Cross Kultur ',
   description: 'Inscrivez-vous à la deuxième édition du Football Frontier International ! Plus d\'équipes, nouvelles techniques et défis inédits.',
   ogDescription: 'Inscrivez-vous à la deuxième édition du Football Frontier International ! Plus d\'équipes, nouvelles techniques et défis inédits.',
 })

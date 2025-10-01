@@ -22,7 +22,7 @@
           <h1 class="text-5xl font-bold mb-4">FFI Edition n°1 All-Stars</h1>
           <p class="text-xl opacity-90 mb-6">
             Match All-Stars réunissant les meilleurs joueurs de la première édition FFI. 
-            Une rencontre exceptionnelle avec des techniques spéciales inédites !
+            Une rencontre exceptionnelle !
           </p>
           <div class="flex flex-wrap gap-4">
             <div class="flex items-center text-white/80">
@@ -36,7 +36,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              Centre sportif Didot, Paris
+              Centre sportif Didot, Ile de France
             </div>
             <div class="flex items-center text-white/80">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,8 +210,8 @@
 <script setup>
 // Métadonnées de la page
 useSeoMeta({
-  title: 'FFI Edition n°1 All-Stars - CrossKultur',
-  ogTitle: 'FFI Edition n°1 All-Stars - CrossKultur',
+  title: 'FFI Edition n°1 All-Stars - Cross Kultur ',
+  ogTitle: 'FFI Edition n°1 All-Stars - Cross Kultur ',
   description: 'Revivez le match All-Stars épique de la première édition FFI. Les meilleurs joueurs s\'affrontent dans un spectacle inoubliable !',
   ogDescription: 'Revivez le match All-Stars épique de la première édition FFI. Les meilleurs joueurs s\'affrontent dans un spectacle inoubliable !',
 })

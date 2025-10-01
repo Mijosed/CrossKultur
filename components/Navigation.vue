@@ -6,7 +6,7 @@
         <NuxtLink to="/" class="flex items-center space-x-3">
           <img 
             src="/logo.png" 
-            alt="CrossKultur Logo" 
+            alt="Cross Kultur  Logo" 
             class="h-16 w-auto rounded-xl"
           />
         </NuxtLink>

@@ -37,14 +37,14 @@ export default defineEventHandler(async (event) => {
 
     const subjectLabel = subjectLabels[subject] || subject
 
-    // Template email pour CrossKultur
+    // Template email pour Cross Kultur 
     const htmlContent = `
       <!DOCTYPE html>
       <html>
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Nouveau message de contact - CrossKultur</title>
+          <title>Nouveau message de contact - Cross Kultur </title>
           <style>
             body {
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -124,7 +124,7 @@ export default defineEventHandler(async (event) => {
           <div class="container">
             <div class="header">
               <h1>💬 Nouveau message de contact</h1>
-              <p style="margin: 10px 0 0 0; opacity: 0.9;">Reçu depuis le site CrossKultur</p>
+              <p style="margin: 10px 0 0 0; opacity: 0.9;">Reçu depuis le site Cross Kultur </p>
             </div>
             
             <div class="content">
@@ -161,7 +161,7 @@ export default defineEventHandler(async (event) => {
             </div>
             
             <div class="footer">
-              <p>Ce message a été envoyé depuis le formulaire de contact de <strong>CrossKultur</strong></p>
+              <p>Ce message a été envoyé depuis le formulaire de contact de <strong>Cross Kultur </strong></p>
               <p style="margin-top: 10px;">
                 Répondez directement à cet email pour contacter ${firstName} ${lastName}
               </p>
@@ -178,7 +178,7 @@ export default defineEventHandler(async (event) => {
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Message bien reçu - CrossKultur</title>
+          <title>Message bien reçu - Cross Kultur </title>
           <style>
             body {
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -249,16 +249,16 @@ export default defineEventHandler(async (event) => {
                 <li>📸 Nous suivre sur <strong>Instagram</strong> et <strong>TikTok</strong></li>
               </ul>
               
-              <p>À très bientôt dans l'aventure CrossKultur ! 🚀</p>
+              <p>À très bientôt dans l'aventure Cross Kultur  ! 🚀</p>
               
               <p style="margin-top: 30px;">
-                L'équipe CrossKultur<br>
+                L'équipe Cross Kultur <br>
                 <em>Là où manga et sport se rencontrent</em>
               </p>
             </div>
             
             <div class="footer">
-              <p><strong>CrossKultur</strong> - Association d'événements manga et sport</p>
+              <p><strong>Cross Kultur </strong> - Association d'événements manga et sport</p>
               <div class="social-links">
                 <a href="https://www.instagram.com/crosskultur.fr/">Instagram</a>
                 <a href="https://www.tiktok.com/@ffi_officiel">TikTok</a>
@@ -270,15 +270,15 @@ export default defineEventHandler(async (event) => {
       </html>
     `
 
-    // Envoi de l'email à CrossKultur
+    // Envoi de l'email à Cross Kultur 
     const { data: mainEmail, error: mainError } = await resend.emails.send({
-      from: 'CrossKultur Contact <contact@crosskultur.fr>',
+      from: 'Cross Kultur  Contact <contact@crosskultur.fr>',
       to: ['contact@crosskultur.fr'],
       replyTo: email,
       subject: `[Contact] ${subjectLabel} - ${firstName} ${lastName}`,
       html: htmlContent,
       text: `
-Nouveau message de contact CrossKultur
+Nouveau message de contact Cross Kultur 
 
 Nom: ${firstName} ${lastName}
 Email: ${email}
@@ -303,9 +303,9 @@ Répondez directement à cet email pour contacter ${firstName} ${lastName}
 
     // Envoi de l'email de confirmation à l'utilisateur
     const { data: confirmEmail, error: confirmError } = await resend.emails.send({
-      from: 'CrossKultur <contact@crosskultur.fr>',
+      from: 'Cross Kultur  <contact@crosskultur.fr>',
       to: [email],
-      subject: `✅ Message bien reçu - CrossKultur`,
+      subject: `✅ Message bien reçu - Cross Kultur `,
       html: confirmationHtml,
       text: `
 Bonjour ${firstName},
@@ -319,13 +319,13 @@ En attendant, n'hésitez pas à :
 - Rejoindre notre communauté Discord
 - Nous suivre sur Instagram et TikTok
 
-À très bientôt dans l'aventure CrossKultur !
+À très bientôt dans l'aventure Cross Kultur  !
 
-L'équipe CrossKultur
+L'équipe Cross Kultur 
 Là où manga et sport se rencontrent
 
 ---
-CrossKultur - Association d'événements manga et sport
+Cross Kultur  - Association d'événements manga et sport
 Instagram: https://www.instagram.com/crosskultur.fr/
 TikTok: https://www.tiktok.com/@ffi_officiel
 Discord: https://discord.gg/mT3SZ85K

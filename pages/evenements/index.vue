@@ -41,8 +41,8 @@ import { events } from '~/data/events.js'
 
 // Métadonnées de la page
 useSeoMeta({
-  title: 'Événements - CrossKultur',
-  ogTitle: 'Événements - CrossKultur',
+  title: 'Événements - Cross Kultur ',
+  ogTitle: 'Événements - Cross Kultur ',
   description: 'Découvrez tous nos événements inspirés des mangas. Expériences immersives et aventures uniques.',
   ogDescription: 'Découvrez tous nos événements inspirés des mangas. Expériences immersives et aventures uniques.',
 })

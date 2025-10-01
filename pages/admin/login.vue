@@ -150,7 +150,7 @@ onMounted(() => {
 
 // SEO
 useSeoMeta({
-  title: 'Administration - CrossKultur',
+  title: 'Administration - Cross Kultur ',
   robots: 'noindex,nofollow',
 })
 </script>

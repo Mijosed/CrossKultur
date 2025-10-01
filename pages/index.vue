@@ -14,7 +14,7 @@
           <NuxtLink to="/evenements" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
             Découvrir nos événements
           </NuxtLink>
-          <NuxtLink to="/membres" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+          <NuxtLink to="/contact" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
             Rejoindre l'aventure
           </NuxtLink>
         </div>
@@ -125,10 +125,10 @@ const getActionText = (status) => {
 
 // Métadonnées de la page
 useSeoMeta({
-  title: 'CrossKultur - Association Manga & Événements',
-  ogTitle: 'CrossKultur - Association Manga & Événements',
-  description: 'CrossKultur organise des événements inspirés de situations et univers présents dans les mangas, transposés dans la réalité.',
-  ogDescription: 'CrossKultur organise des événements inspirés de situations et univers présents dans les mangas, transposés dans la réalité.',
+  title: 'Cross Kultur  - Association Pop Culture & Événements',
+  ogTitle: 'Cross Kultur  - Association Pop Culture & Événements',
+  description: 'Cross Kultur  organise des événements inspirés de l\'univers de la pop culture, transposés dans la réalité.',
+  ogDescription: 'Cross Kultur  organise des événements inspirés de situations et univers présents dans la pop culture, transposés dans la réalité.',
 })
 </script>
 

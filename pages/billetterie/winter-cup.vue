@@ -324,7 +324,7 @@ const submitRegistration = async () => {
 
 // SEO
 useSeoMeta({
-  title: 'Winter Cup - Billetterie CrossKultur',
+  title: 'Winter Cup - Billetterie Cross Kultur ',
   description: 'Tournoi de basket-ball inspiré de Kuroko no Basket et Slam Dunk'
 })
 

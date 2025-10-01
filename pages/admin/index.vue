@@ -379,7 +379,7 @@ const formatDateTime = (dateString) => {
 
 // SEO
 useSeoMeta({
-  title: 'Administration - CrossKultur',
+  title: 'Administration - Cross Kultur ',
   description: 'Panneau d\'administration pour la gestion des inscriptions',
   robots: 'noindex'
 })

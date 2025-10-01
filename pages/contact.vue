@@ -182,7 +182,7 @@
           <div class="bg-white rounded-xl shadow-lg p-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Suivez-nous</h2>
             <p class="text-gray-600 mb-6">
-              Restez connectés avec la communauté CrossKultur sur nos réseaux sociaux !
+              Restez connectés avec la communauté Cross Kultur  sur nos réseaux sociaux !
             </p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -224,7 +224,7 @@
                 </div>
                 <div>
                   <h3 class="font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors">Discord</h3>
-                  <p class="text-sm text-gray-500">CrossKultur Community</p>
+                  <p class="text-sm text-gray-500">Cross Kultur  Community</p>
                 </div>
               </a>
             </div>
@@ -236,7 +236,7 @@
             
             <div class="space-y-4">
               <div class="border-b border-gray-200 pb-4">
-                <h3 class="font-semibold text-gray-800 mb-2">Comment puis-je rejoindre CrossKultur ?</h3>
+                <h3 class="font-semibold text-gray-800 mb-2">Comment puis-je rejoindre Cross Kultur  ?</h3>
                 <p class="text-sm text-gray-600">
                   Vous pouvez nous rejoindre en tant que membre actif, bénévole ou simplement participer à nos événements. 
                   Contactez-nous pour en savoir plus !
@@ -271,10 +271,10 @@ import { ref } from 'vue'
 
 // Métadonnées de la page
 useSeoMeta({
-  title: 'Contact - CrossKultur',
-  ogTitle: 'Contact - CrossKultur',
-  description: 'Contactez CrossKultur pour toutes vos questions sur nos événements manga. Formulaire de contact et coordonnées.',
-  ogDescription: 'Contactez CrossKultur pour toutes vos questions sur nos événements manga. Formulaire de contact et coordonnées.',
+  title: 'Contact - Cross Kultur ',
+  ogTitle: 'Contact - Cross Kultur ',
+  description: 'Contactez Cross Kultur  pour toutes vos questions sur nos événements manga. Formulaire de contact et coordonnées.',
+  ogDescription: 'Contactez Cross Kultur  pour toutes vos questions sur nos événements manga. Formulaire de contact et coordonnées.',
 })
 
 // État du formulaire

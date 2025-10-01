@@ -68,3 +68,30 @@ model TicketScan {
   
   @@map("ticket_scans")
 }
+
+model WinterCupRegistration {
+  id                String   @id @default(cuid())
+  
+  // Type de participant
+  type              String   // "creator" ou "subscriber"
+  eventSlug         String   // "winter-cup"
+  
+  // Informations communes
+  username          String
+  socialNetwork     String   // "tiktok", "youtube", "instagram", "twitch", "twitter", "other"
+  socialHandle      String   // @username ou lien complet
+  email             String
+  
+  // Informations spécifiques aux abonnés
+  participationMode String?  // "drive" ou "tiktok" (null pour les créateurs)
+  highlightsLink    String?  // Lien Google Drive ou TikTok (null pour les créateurs)
+  
+  // Statut
+  status            String   @default("pending") // "pending", "approved", "rejected"
+  
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@map("winter_cup_registrations")
+}
