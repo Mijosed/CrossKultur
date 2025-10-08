@@ -101,8 +101,64 @@
       <section class="py-16">
         <div class="container mx-auto px-4">
           <div class="max-w-2xl mx-auto">
+            <!-- Timer avant ouverture de la billetterie -->
+            <div v-if="!ticketingOpen && !ticketingClosed && !registrationSuccess" class="bg-white rounded-2xl shadow-xl p-8 text-center mb-8">
+              <div class="bg-gradient-to-r from-purple-100 to-blue-100 rounded-xl p-6 mb-4">
+                <h3 class="text-2xl font-bold text-purple-800 mb-2">
+                  La billetterie ouvre dans
+                </h3>
+                <div class="grid grid-cols-4 gap-4 text-center mb-4">
+                  <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <div class="text-3xl font-bold text-purple-600">{{ timeLeft.days }}</div>
+                    <div class="text-sm text-gray-600">Jours</div>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <div class="text-3xl font-bold text-purple-600">{{ timeLeft.hours }}</div>
+                    <div class="text-sm text-gray-600">Heures</div>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <div class="text-3xl font-bold text-purple-600">{{ timeLeft.minutes }}</div>
+                    <div class="text-sm text-gray-600">Minutes</div>
+                  </div>
+                  <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <div class="text-3xl font-bold text-purple-600">{{ timeLeft.seconds }}</div>
+                    <div class="text-sm text-gray-600">Secondes</div>
+                  </div>
+                </div>
+                <p class="text-purple-700 font-semibold">
+                  Ouverture le {{ ticketingStartDate.toLocaleDateString('fr-FR', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                  }) }}
+                </p>
+              </div>
+              <div class="text-gray-600">
+                <p class="text-lg mb-2">Soyez prêts pour l'ouverture !</p>
+                <p>Les places sont limitées et partent très vite.</p>
+              </div>
+            </div>
+
+            <!-- Billetterie fermée (après la date limite) -->
+            <div v-else-if="ticketingClosed && !registrationSuccess" class="bg-white rounded-2xl shadow-xl p-8 text-center mb-8">
+              <div class="bg-gradient-to-r from-red-100 to-pink-100 rounded-xl p-6 mb-4">
+                <h3 class="text-2xl font-bold text-red-800 mb-2">
+                  <span class="mr-2">🔒</span> Billetterie fermée
+                </h3>
+                <p class="text-red-700">
+                  Les inscriptions pour la Winter Cup sont maintenant fermées.
+                </p>
+              </div>
+              <button @click="$router.push('/billetterie')" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+                Retour à la billetterie
+              </button>
+            </div>
+
             <!-- Success State -->
-            <div v-if="registrationSuccess" class="bg-white rounded-2xl shadow-xl p-8 text-center">
+            <div v-else-if="registrationSuccess" class="bg-white rounded-2xl shadow-xl p-8 text-center">
               <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -122,8 +178,8 @@
               </div>
             </div>
 
-            <!-- Registration Form -->
-            <div v-else class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <!-- Registration Form (seulement si billetterie ouverte) -->
+            <div v-else-if="ticketingOpen && !ticketingClosed" class="bg-white rounded-2xl shadow-xl overflow-hidden">
               <!-- Form Header -->
               <div class="bg-gradient-to-r from-purple-600 to-blue-600 p-8 text-white text-center">
                 <h2 class="text-3xl font-bold mb-2">Inscription gratuite</h2>
@@ -245,7 +301,37 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+
+// Configuration de la billetterie
+const ticketingStartDate = ref(new Date('2025-10-12T18:00:00')) // Date d'ouverture de la billetterie
+const ticketingEndDate = ref(new Date('2025-11-02T23:59:59'))   // Date de fermeture de la billetterie
+const currentTime = ref(new Date())
+let timerInterval = null
+
+// État du timer et de la billetterie
+const timeLeft = computed(() => {
+  const diff = ticketingStartDate.value.getTime() - currentTime.value.getTime()
+  
+  if (diff <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+  }
+  
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+  
+  return { days, hours, minutes, seconds }
+})
+
+const ticketingOpen = computed(() => {
+  return currentTime.value >= ticketingStartDate.value && currentTime.value <= ticketingEndDate.value
+})
+
+const ticketingClosed = computed(() => {
+  return currentTime.value > ticketingEndDate.value
+})
 
 // State
 const event = ref(null)
@@ -331,5 +417,16 @@ useSeoMeta({
 // Lifecycle
 onMounted(() => {
   loadEvent()
+  
+  // Démarrer le timer
+  timerInterval = setInterval(() => {
+    currentTime.value = new Date()
+  }, 1000)
+})
+
+onUnmounted(() => {
+  if (timerInterval) {
+    clearInterval(timerInterval)
+  }
 })
 </script>

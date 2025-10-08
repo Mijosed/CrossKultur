@@ -22,7 +22,6 @@
         <div class="hidden md:flex space-x-8">
           <NuxtLink to="/" class="nav-link">Accueil</NuxtLink>
           <NuxtLink to="/roadmap" class="nav-link">Roadmap</NuxtLink>
-          <NuxtLink to="/membres" class="nav-link">Membres</NuxtLink>
           <NuxtLink to="/evenements" class="nav-link">Événements</NuxtLink>
           <NuxtLink to="/billetterie" class="nav-link">Billetterie</NuxtLink>
           <NuxtLink to="/contact" class="nav-link">Contact</NuxtLink>
@@ -34,7 +33,6 @@
         <div class="flex flex-col space-y-2 pt-4">
           <NuxtLink to="/" class="mobile-nav-link" @click="closeMobileMenu">Accueil</NuxtLink>
           <NuxtLink to="/roadmap" class="mobile-nav-link" @click="closeMobileMenu">Roadmap</NuxtLink>
-          <NuxtLink to="/membres" class="mobile-nav-link" @click="closeMobileMenu">Membres</NuxtLink>
           <NuxtLink to="/evenements" class="mobile-nav-link" @click="closeMobileMenu">Événements</NuxtLink>
           <NuxtLink to="/billetterie" class="mobile-nav-link" @click="closeMobileMenu">Billetterie</NuxtLink>
           <NuxtLink to="/contact" class="mobile-nav-link" @click="closeMobileMenu">Contact</NuxtLink>

@@ -16,9 +16,9 @@ const existingEvents = [
     imageUrl: "/winter_cup.png",
     location: "Ile-de-France",
     duration: "Après-midi",
-    price: "Gratuit",
+    price: "5",
     participants: 8,
-    maxParticipants: 200,
+    maxParticipants: 100,
     registeredParticipants: 8,
   },
 ]

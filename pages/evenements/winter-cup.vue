@@ -103,7 +103,7 @@
             <!-- Matchs & animations -->
             <div class="mb-8">
               <h3 class="text-xl font-bold text-purple-600 mb-4 flex items-center">
-                <span class="mr-2">🏀</span> Matchs & animations
+               Matchs & animations
               </h3>
               <div class="space-y-4">
                 <div class="flex items-start">
@@ -120,7 +120,7 @@
                   </div>
                   <div class="ml-4">
                     <h4 class="font-semibold text-gray-800 flex items-center">
-                      <span class="mr-2">🎯</span> Tir du milieu de terrain
+                     Tir du milieu de terrain
                     </h4>
                     <p class="text-gray-600">20 min — lot Crunchyroll</p>
                   </div>
@@ -156,7 +156,7 @@
                   </div>
                   <div class="ml-4">
                     <h4 class="font-semibold text-gray-800 flex items-center">
-                      <span class="mr-2">🏀</span> Concours à 3 points
+                    Concours à 3 points
                     </h4>
                     <p class="text-gray-600">20 minutes</p>
                   </div>
@@ -176,7 +176,7 @@
             <!-- Clôture -->
             <div class="mb-8">
               <h3 class="text-xl font-bold text-purple-600 mb-4 flex items-center">
-                <span class="mr-2">🏆</span> Clôture
+              Clôture
               </h3>
               <div class="space-y-4">
                 <div class="flex items-start">
@@ -208,19 +208,6 @@
           <!-- Informations pratiques -->
           <div class="bg-white rounded-xl shadow-lg p-6 mb-8 sticky top-8">
             <h3 class="text-2xl font-bold text-gray-800 mb-6">Informations pratiques</h3>
-            
-            <!-- Prix -->
-            <div class="mb-6">
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-gray-600">Prix</span>
-                <span class="text-2xl font-bold text-purple-600">20€</span>
-              </div>
-            </div>
-
-            <!-- Bouton d'inscription -->
-            <button @click="showRegistrationModal = true" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors mb-4">
-              S'inscrire maintenant
-            </button>
 
             <!-- Informations complémentaires -->
             <div class="space-y-4 text-sm">
@@ -248,9 +235,16 @@
                 </svg>
                 <div>
                   <div class="font-medium text-gray-700">Format équipes</div>
-                  <div class="text-gray-500">5vs5</div>
+                  <div class="text-gray-500">10 joueurs par équipe (5vs5)</div>
                 </div>
               </div>
+            </div>
+
+             <!-- Bouton d'inscription -->
+            <div class="mt-6">
+            <button @click="showRegistrationModal = true" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors mb-4">
+              S'inscrire maintenant
+            </button>
             </div>
 
             <!-- Contact -->

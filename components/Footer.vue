@@ -11,7 +11,6 @@
           <ul class="space-y-2">
             <li><NuxtLink to="/" class="text-gray-300 hover:text-white transition-colors">Accueil</NuxtLink></li>
             <li><NuxtLink to="/roadmap" class="text-gray-300 hover:text-white transition-colors">Roadmap</NuxtLink></li>
-            <li><NuxtLink to="/membres" class="text-gray-300 hover:text-white transition-colors">Membres</NuxtLink></li>
             <li><NuxtLink to="/evenements" class="text-gray-300 hover:text-white transition-colors">Événements</NuxtLink></li>
             <li><NuxtLink to="/contact" class="text-gray-300 hover:text-white transition-colors">Contact</NuxtLink></li>
             <li><NuxtLink to="/billetterie" class="text-gray-300 hover:text-white transition-colors">Billetterie</NuxtLink></li>
