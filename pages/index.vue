@@ -1,5 +1,53 @@
 <template>
   <div>
+    <!-- Popup Winter Cup -->
+    <Transition name="popup" appear>
+      <div v-if="showWinterCupBanner" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 text-center relative popup-content">
+        <!-- Bouton de fermeture -->
+        <button 
+          @click="closeBanner"
+          class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+          aria-label="Fermer le popup"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        
+        <!-- Icône -->
+        <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7"></path>
+          </svg>
+        </div>
+        
+        <!-- Contenu -->
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">Winter Cup 2025</h3>
+        <div class="bg-purple-50 rounded-lg p-3 mb-6">
+          <p class="text-purple-800 font-semibold">📅 2 Novembre 2025</p>
+          <p class="text-purple-600 text-sm">Le Prisme, Île-de-France</p>
+        </div>
+        
+        <!-- Boutons -->
+        <div class="flex gap-3">
+          <button 
+            @click="closeBanner" 
+            class="flex-1 border border-gray-300 text-gray-700 py-2.5 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+          >
+            Plus tard
+          </button>
+          <NuxtLink 
+            to="/evenements/winter-cup" 
+            class="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2.5 rounded-lg hover:from-purple-700 hover:to-blue-700 font-medium transition-all transform hover:scale-105"
+          >
+            Découvrir
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
+    </Transition>
+
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-r from-[#004AAD] to-[#CB6CE6] min-h-screen flex items-center">
       <div class="absolute inset-0 bg-black bg-opacity-20"></div>
@@ -103,8 +151,38 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { events } from '~/data/events.js'
+
+// État du popup Winter Cup
+const showWinterCupBanner = ref(false)
+
+// Fonction pour fermer le popup
+const closeBanner = () => {
+  showWinterCupBanner.value = false
+}
+
+// Afficher le popup après un délai (seulement si arrivée de l'extérieur)
+onMounted(() => {
+  // Vérifier si l'utilisateur vient d'une navigation interne
+  const isInternalNavigation = document.referrer && 
+    (document.referrer.includes(window.location.hostname) || 
+     document.referrer.includes('localhost'))
+  
+  // Vérifier si le popup a déjà été affiché dans cette session
+  const popupShownThisSession = sessionStorage.getItem('winterCupPopupShown')
+  
+  // Afficher seulement si :
+  // 1. Pas de navigation interne OU première visite de la session
+  // 2. ET popup pas encore affiché dans cette session
+  if ((!isInternalNavigation || !popupShownThisSession) && !popupShownThisSession) {
+    setTimeout(() => {
+      showWinterCupBanner.value = true
+      // Marquer comme affiché pour cette session
+      sessionStorage.setItem('winterCupPopupShown', 'true')
+    }, 2000) // Affiche après 2 secondes
+  }
+})
 
 // Récupérer les 3 prochains événements à venir
 const upcomingEvents = computed(() => {
@@ -146,6 +224,40 @@ useSeoMeta({
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Animation du popup */
+.popup-enter-active {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popup-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.popup-enter-from {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.popup-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.popup-content {
+  animation: popupContent 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popupContent {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
