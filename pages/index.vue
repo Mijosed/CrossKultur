@@ -176,11 +176,9 @@ onMounted(() => {
   // 1. Pas de navigation interne OU première visite de la session
   // 2. ET popup pas encore affiché dans cette session
   if ((!isInternalNavigation || !popupShownThisSession) && !popupShownThisSession) {
-    setTimeout(() => {
-      showWinterCupBanner.value = true
-      // Marquer comme affiché pour cette session
-      sessionStorage.setItem('winterCupPopupShown', 'true')
-    }, 2000) // Affiche après 2 secondes
+    showWinterCupBanner.value = true
+    // Marquer comme affiché pour cette session
+    sessionStorage.setItem('winterCupPopupShown', 'true')
   }
 })
 
