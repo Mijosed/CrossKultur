@@ -13,7 +13,7 @@ export const events = [
     category: "sport",
     imageUrl: "/ffi1.jpg",
     location: "Centre Sportif Didot",
-    duration: "Week-end complet",
+    duration: "Après-midi",
     price: "30€",
     participants: 44,
     maxParticipants: 44,

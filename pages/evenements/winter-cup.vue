@@ -12,12 +12,12 @@
       <div class="relative z-10 container mx-auto px-4 h-full flex items-center">
         <div class="text-white max-w-3xl">
           <div class="flex items-center mb-4">
-            <button @click="$router.back()" class="mr-4 p-2 rounded-full bg-white bg-opacity-20 hover:bg-white hover:bg-opacity-30 transition-colors">
+            <button @click="$router.back()" class="hidden sm:block mr-4 p-2 rounded-full bg-white bg-opacity-20 hover:bg-white hover:bg-opacity-30 transition-colors">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
               </svg>
             </button>
-            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">À venir</span>
+            <span class="hidden sm:inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">À venir</span>
           </div>
           <h1 class="text-5xl font-bold mb-4">Winter Cup</h1>
           <p class="text-xl opacity-90 mb-6">
@@ -42,29 +42,31 @@
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              Week-end complet
+              Après-midi
             </div>
           </div>
           
-          <!-- Bouton d'inscription dans le hero -->
-          <div class="flex flex-col sm:flex-row gap-4">
+          <!-- Boutons d'action dans le hero -->
+          <div class="flex flex-row gap-2 sm:gap-4 w-full max-w-md">
             <button 
               @click="showRegistrationModal = true" 
-              class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center"
+              class="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-3 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold sm:font-bold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
             >
-              <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
               </svg>
-              S'inscrire maintenant
+              <span class="hidden sm:inline">S'inscrire maintenant</span>
+              <span class="sm:hidden">S'inscrire</span>
             </button>
             <NuxtLink 
               to="/billetterie/winter-cup" 
-              class="bg-white/10 backdrop-blur-sm hover:bg-white/20 border-2 border-white/30 hover:border-white/50 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center"
+              class="flex-1 bg-white/15 backdrop-blur-sm hover:bg-white/25 border-2 border-white/40 hover:border-white/60 text-white px-3 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold sm:font-bold text-sm sm:text-base transition-all duration-300 flex items-center justify-center"
             >
-              <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 sm:w-6 sm:h-6 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a1 1 0 001 1h1a1 1 0 001-1V7a2 2 0 00-2-2H5zM5 21a2 2 0 002-2v-3a1 1 0 00-1-1H5a1 1 0 00-1 1v3a2 2 0 002 2h1zm0 0h4a2 2 0 002-2v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a2 2 0 002 2z"></path>
               </svg>
-              Acheter un billet
+              <span class="hidden sm:inline">Acheter un billet</span>
+              <span class="sm:hidden">Billets</span>
             </NuxtLink>
           </div>
         </div>
@@ -114,7 +116,7 @@
                 <div class="text-gray-600 space-y-1">
                   <p>• Matchs de poules et phases éliminatoires</p>
                   <p>• Animations : concours de tirs et épreuves de vitesse</p>
-                  <p>• Lots Crunchyroll à gagner</p>
+                  <p>• Lots à gagner</p>
                 </div>
               </div>
 
