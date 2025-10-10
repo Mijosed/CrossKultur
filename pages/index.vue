@@ -27,7 +27,7 @@
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold text-gray-800 mb-6">Qui sommes-nous ?</h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Cross Kultur est une association passionnée qui donne vie aux univers manga à travers des événements immersifs et créatifs.
+            Cross Kultur est une association passionnée qui donne vie à la pop culture à travers des événements immersifs et créatifs.
           </p>
         </div>
         
@@ -39,7 +39,7 @@
               </svg>
             </div>
             <h3 class="text-xl font-semibold text-gray-800 mb-3">Événements Immersifs</h3>
-            <p class="text-gray-600">Des expériences uniques qui transportent les participants dans leurs univers manga préférés.</p>
+            <p class="text-gray-600">Des expériences uniques qui transportent les participants dans leurs univers préférés.</p>
           </div>
           
           <div class="text-center">
@@ -59,7 +59,7 @@
               </svg>
             </div>
             <h3 class="text-xl font-semibold text-gray-800 mb-3">Innovation</h3>
-            <p class="text-gray-600">Des concepts créatifs et novateurs pour repenser l'expérience manga dans la réalité.</p>
+            <p class="text-gray-600">Des concepts créatifs et novateurs pour repenser l'expérience pop culture dans la réalité.</p>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold text-gray-800 mb-6">Prochains événements</h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Découvrez nos prochaines aventures manga en préparation
+            Découvrez nos prochaines aventures basées sur la pop culture en préparation
           </p>
         </div>
         

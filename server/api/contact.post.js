@@ -253,12 +253,12 @@ export default defineEventHandler(async (event) => {
               
               <p style="margin-top: 30px;">
                 L'équipe Cross Kultur <br>
-                <em>Là où manga et sport se rencontrent</em>
+                <em>Là où pop culture et la réalité se rencontrent</em>
               </p>
             </div>
             
             <div class="footer">
-              <p><strong>Cross Kultur </strong> - Association d'événements manga et sport</p>
+              <p><strong>Cross Kultur </strong> - Association d'événements pop culture</p>
               <div class="social-links">
                 <a href="https://www.instagram.com/crosskultur.fr/">Instagram</a>
                 <a href="https://www.tiktok.com/@ffi_officiel">TikTok</a>
@@ -322,10 +322,10 @@ En attendant, n'hésitez pas à :
 À très bientôt dans l'aventure Cross Kultur  !
 
 L'équipe Cross Kultur 
-Là où manga et sport se rencontrent
+Là où pop culture et la réalité se rencontrent
 
 ---
-Cross Kultur  - Association d'événements manga et sport
+Cross Kultur  - Association d'événements pop culture
 Instagram: https://www.instagram.com/crosskultur.fr/
 TikTok: https://www.tiktok.com/@ffi_officiel
 Discord: https://discord.gg/mT3SZ85K

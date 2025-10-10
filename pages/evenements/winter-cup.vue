@@ -24,19 +24,19 @@
             Tournoi de basket-ball inspiré de Kuroko no Basket et Slam Dunk. 
             Des matchs intenses avec une ambiance de compétition authentique !
           </p>
-          <div class="flex flex-wrap gap-4">
+          <div class="flex flex-wrap gap-4 mb-8">
             <div class="flex items-center text-white/80">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
-              1 Novembre 2025
+              2 Novembre 2025
             </div>
             <div class="flex items-center text-white/80">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
-              Ile de France
+                Le Prisme
             </div>
             <div class="flex items-center text-white/80">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,6 +44,28 @@
               </svg>
               Week-end complet
             </div>
+          </div>
+          
+          <!-- Bouton d'inscription dans le hero -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button 
+              @click="showRegistrationModal = true" 
+              class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center"
+            >
+              <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+              </svg>
+              S'inscrire maintenant
+            </button>
+            <NuxtLink 
+              to="/billetterie/winter-cup" 
+              class="bg-white/10 backdrop-blur-sm hover:bg-white/20 border-2 border-white/30 hover:border-white/50 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center"
+            >
+              <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a1 1 0 001 1h1a1 1 0 001-1V7a2 2 0 00-2-2H5zM5 21a2 2 0 002-2v-3a1 1 0 00-1-1H5a1 1 0 00-1 1v3a2 2 0 002 2h1zm0 0h4a2 2 0 002-2v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a2 2 0 002 2z"></path>
+              </svg>
+              Acheter un billet
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -77,126 +99,36 @@
 
           <!-- Programme -->
           <section class="bg-white rounded-xl shadow-lg p-8 mb-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Organisation de la journée</h2>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Programme de la journée</h2>
             
-            <!-- Début de l'événement -->
-            <div class="mb-8">
-              <div class="flex items-start mb-4">
-                <div class="flex-shrink-0 w-16 text-center">
-                  <span class="text-lg font-bold text-purple-600">14h00</span>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-800">Début de l'event</h3>
+            <div class="space-y-6">
+              <!-- Ouverture -->
+              <div class="bg-purple-50 rounded-lg p-4">
+                <h3 class="text-lg font-bold text-purple-700 mb-2">14h00 - 14h30 • Ouverture</h3>
+                <p class="text-gray-600">Accueil des participants et cérémonie d'ouverture</p>
+              </div>
+
+              <!-- Tournoi -->
+              <div class="bg-blue-50 rounded-lg p-4">
+                <h3 class="text-lg font-bold text-blue-700 mb-2">14h30 - 17h30 • Tournoi</h3>
+                <div class="text-gray-600 space-y-1">
+                  <p>• Matchs de poules et phases éliminatoires</p>
+                  <p>• Animations : concours de tirs et épreuves de vitesse</p>
+                  <p>• Lots Crunchyroll à gagner</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <div class="flex-shrink-0 w-16 text-center">
-                  <span class="text-lg font-bold text-purple-600">14h15</span>
-                </div>
-                <div class="ml-4">
-                  <h3 class="text-lg font-semibold text-gray-800">Cérémonie d'ouverture</h3>
-                  <p class="text-gray-600">15 minutes de présentation et lancement du tournoi</p>
-                </div>
+
+              <!-- Finale & Clôture -->
+              <div class="bg-green-50 rounded-lg p-4">
+                <h3 class="text-lg font-bold text-green-700 mb-2">17h30 - 19h00 • Finale & Clôture</h3>
+                <p class="text-gray-600">Match final, remise des prix et cérémonie de clôture</p>
               </div>
             </div>
 
-            <!-- Matchs & animations -->
-            <div class="mb-8">
-              <h3 class="text-xl font-bold text-purple-600 mb-4 flex items-center">
-               Matchs & animations
-              </h3>
-              <div class="space-y-4">
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-16 text-center">
-                    <span class="text-lg font-bold text-purple-600">14h45</span>
-                  </div>
-                  <div class="ml-4">
-                    <h4 class="font-semibold text-gray-800">Première série de matchs de conférence</h4>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-16 text-center">
-                    <span class="text-lg font-bold text-purple-600">15h45</span>
-                  </div>
-                  <div class="ml-4">
-                    <h4 class="font-semibold text-gray-800 flex items-center">
-                     Tir du milieu de terrain
-                    </h4>
-                    <p class="text-gray-600">20 min — lot Crunchyroll</p>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-16 text-center">
-                    <span class="text-lg font-bold text-purple-600">16h05</span>
-                  </div>
-                  <div class="ml-4">
-                    <h4 class="font-semibold text-gray-800">Derniers matchs de conférence</h4>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-16 text-center">
-                    <span class="text-lg font-bold text-purple-600">16h35</span>
-                  </div>
-                  <div class="ml-4">
-                    <h4 class="font-semibold text-gray-800">Épreuve de vitesse</h4>
-                    <p class="text-gray-600">20 minutes</p>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-16 text-center">
-                    <span class="text-lg font-bold text-purple-600">16h55</span>
-                  </div>
-                  <div class="ml-4">
-                    <h4 class="font-semibold text-gray-800">Les demi-finales</h4>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-16 text-center">
-                    <span class="text-lg font-bold text-purple-600">17h35</span>
-                  </div>
-                  <div class="ml-4">
-                    <h4 class="font-semibold text-gray-800 flex items-center">
-                    Concours à 3 points
-                    </h4>
-                    <p class="text-gray-600">20 minutes</p>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-16 text-center">
-                    <span class="text-lg font-bold text-purple-600">17h55</span>
-                  </div>
-                  <div class="ml-4">
-                    <h4 class="font-semibold text-gray-800">Finale</h4>
-                    <p class="text-gray-600">Gagnants des demi-finales</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Clôture -->
-            <div class="mb-8">
-              <h3 class="text-xl font-bold text-purple-600 mb-4 flex items-center">
-              Clôture
-              </h3>
-              <div class="space-y-4">
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-16 text-center">
-                    <span class="text-lg font-bold text-purple-600">18h25</span>
-                  </div>
-                  <div class="ml-4">
-                    <h4 class="font-semibold text-gray-800">Cérémonie finale</h4>
-                    <p class="text-gray-600">Présentation des joueurs, trophées, remerciements</p>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 w-16 text-center">
-                    <span class="text-lg font-bold text-purple-600">18h40</span>
-                  </div>
-                  <div class="ml-4">
-                    <h4 class="font-semibold text-gray-800">Remise des récompenses & fin de l'événement</h4>
-                  </div>
-                </div>
-              </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <p class="text-sm text-gray-600 text-center">
+                <strong>Durée totale :</strong> 5 heures d'événement intensif • <strong>Format :</strong> Équipes de 10 joueurs (5vs5)
+              </p>
             </div>
           </section>
         </div>

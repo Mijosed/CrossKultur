@@ -93,8 +93,8 @@ const getStatusText = (status) => {
 
 const getActionButtonText = (status) => {
   switch (status) {
-    case 'upcoming': return 'S\'inscrire'
-    case 'ongoing': return 'Rejoindre'
+    case 'upcoming': return 'Voir détails'
+    case 'ongoing': return 'Voir détails'
     case 'past': return 'Voir détails'
     default: return 'En savoir plus'
   }

@@ -107,22 +107,34 @@
                 <h3 class="text-2xl font-bold text-purple-800 mb-2">
                   La billetterie ouvre dans
                 </h3>
-                <div class="grid grid-cols-4 gap-4 text-center mb-4">
-                  <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <div class="text-3xl font-bold text-purple-600">{{ timeLeft.days }}</div>
-                    <div class="text-sm text-gray-600">Jours</div>
+                <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center mb-4">
+                  <div class="bg-white rounded-lg p-2 sm:p-4 shadow-sm">
+                    <div class="text-2xl sm:text-3xl font-bold text-purple-600">{{ timeLeft.days }}</div>
+                    <div class="text-xs sm:text-sm text-gray-600">
+                      <span class="hidden sm:inline">Jours</span>
+                      <span class="sm:hidden">Jr</span>
+                    </div>
                   </div>
-                  <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <div class="text-3xl font-bold text-purple-600">{{ timeLeft.hours }}</div>
-                    <div class="text-sm text-gray-600">Heures</div>
+                  <div class="bg-white rounded-lg p-2 sm:p-4 shadow-sm">
+                    <div class="text-2xl sm:text-3xl font-bold text-purple-600">{{ timeLeft.hours }}</div>
+                    <div class="text-xs sm:text-sm text-gray-600">
+                      <span class="hidden sm:inline">Heures</span>
+                      <span class="sm:hidden">Hr</span>
+                    </div>
                   </div>
-                  <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <div class="text-3xl font-bold text-purple-600">{{ timeLeft.minutes }}</div>
-                    <div class="text-sm text-gray-600">Minutes</div>
+                  <div class="bg-white rounded-lg p-2 sm:p-4 shadow-sm">
+                    <div class="text-2xl sm:text-3xl font-bold text-purple-600">{{ timeLeft.minutes }}</div>
+                    <div class="text-xs sm:text-sm text-gray-600">
+                      <span class="hidden sm:inline">Minutes</span>
+                      <span class="sm:hidden">Mn</span>
+                    </div>
                   </div>
-                  <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <div class="text-3xl font-bold text-purple-600">{{ timeLeft.seconds }}</div>
-                    <div class="text-sm text-gray-600">Secondes</div>
+                  <div class="bg-white rounded-lg p-2 sm:p-4 shadow-sm">
+                    <div class="text-2xl sm:text-3xl font-bold text-purple-600">{{ timeLeft.seconds }}</div>
+                    <div class="text-xs sm:text-sm text-gray-600">
+                      <span class="hidden sm:inline">Secondes</span>
+                      <span class="sm:hidden">Sc</span>
+                    </div>
                   </div>
                 </div>
                 <p class="text-purple-700 font-semibold">

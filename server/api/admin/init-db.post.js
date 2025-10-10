@@ -56,9 +56,9 @@ export default defineEventHandler(async (event) => {
         slug: 'winter-cup',
         title: 'Winter Cup',
         description: 'Tournoi de basket-ball inspiré de mangas tel que Kuroko no Basket et Slam Dunk.',
-        date: new Date('2025-11-01T13:00:00.000Z'),
-        location: 'Ile-de-France',
-        maxTickets: 200,
+        date: new Date('2025-11-02T13:00:00.000Z'),
+        location: 'Le Prisme',
+        maxTickets: 100,
         price: 0.0,
         imageUrl: '/winter_cup.png',
         status: 'upcoming'

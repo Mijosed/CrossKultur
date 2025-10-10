@@ -5,7 +5,7 @@
       <div class="container mx-auto px-4">
         <div class="text-center text-white">
           <h1 class="text-5xl md:text-6xl font-bold mb-6">
-            Billetterie Cross Kultur 
+            Billetterie 
           </h1>
           <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
             Réservez votre place pour nos événements <br>

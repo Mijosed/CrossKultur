@@ -9,7 +9,7 @@ const existingEvents = [
     description: "Tournoi de basket-ball inspiré de Kuroko no Basket et Slam Dunk.",
     shortDescription: "Un tournoi de basket intense avec des équipes inspirées de Kuroko no Basket.",
     fullDescription: "Tournoi de basket-ball inspiré de Kuroko no Basket et Slam Dunk. Des matchs intenses et une ambiance de compétition authentique !",
-    date: "2025-11-01",
+    date: "2025-11-02",
     status: "upcoming",
     type: "sport",
     category: "sport",

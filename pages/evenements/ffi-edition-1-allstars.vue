@@ -3,7 +3,7 @@
     <!-- Hero Section -->
     <section class="relative h-96 overflow-hidden">
       <img 
-        src="/all_stars.jpeg" 
+        src="/all_stars.jpg" 
         alt="FFI Edition n°1"
         class="absolute inset-0 w-full h-full object-cover"
       >
