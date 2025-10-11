@@ -102,7 +102,7 @@
         <div class="container mx-auto px-4">
           <div class="max-w-2xl mx-auto">
             <!-- Timer avant ouverture de la billetterie -->
-            <div v-if="!ticketingOpen && !ticketingClosed && !registrationSuccess" class="bg-white rounded-2xl shadow-xl p-8 text-center mb-8">
+            <div v-if="!ticketingOpen && !ticketingClosed" class="bg-white rounded-2xl shadow-xl p-8 text-center mb-8">
               <div class="bg-gradient-to-r from-purple-100 to-blue-100 rounded-xl p-6 mb-4">
                 <h3 class="text-2xl font-bold text-purple-800 mb-2">
                   La billetterie ouvre dans
@@ -154,155 +154,63 @@
               </div>
             </div>
 
-            <!-- Billetterie fermée (après la date limite) -->
-            <div v-else-if="ticketingClosed && !registrationSuccess" class="bg-white rounded-2xl shadow-xl p-8 text-center mb-8">
-              <div class="bg-gradient-to-r from-red-100 to-pink-100 rounded-xl p-6 mb-4">
-                <h3 class="text-2xl font-bold text-red-800 mb-2">
-                  <span class="mr-2">🔒</span> Billetterie fermée
-                </h3>
-                <p class="text-red-700">
-                  Les inscriptions pour la Winter Cup sont maintenant fermées.
-                </p>
-              </div>
-              <button @click="$router.push('/billetterie')" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
-                Retour à la billetterie
-              </button>
-            </div>
-
-            <!-- Success State -->
-            <div v-else-if="registrationSuccess" class="bg-white rounded-2xl shadow-xl p-8 text-center">
-              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-800 mb-4">Inscription réussie ! 🎉</h3>
-              <p class="text-gray-600 mb-6">
-                Votre billet vous a été envoyé par email. Vérifiez votre boîte de réception et vos spams.
-              </p>
-              <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button @click="$router.push('/billetterie')" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
-                  Retour à la billetterie
-                </button>
-                <button @click="registrationSuccess = false; form = { firstName: '', lastName: '', email: '', phone: '' }" class="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors">
-                  Nouvelle inscription
-                </button>
-              </div>
-            </div>
-
-            <!-- Registration Form (seulement si billetterie ouverte) -->
-            <div v-else-if="ticketingOpen && !ticketingClosed" class="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <!-- Form Header -->
-              <div class="bg-gradient-to-r from-purple-600 to-blue-600 p-8 text-white text-center">
-                <h2 class="text-3xl font-bold mb-2">Inscription gratuite</h2>
-                <p class="opacity-90">Réservez votre place en quelques clics</p>
-                <div class="mt-4 text-2xl font-bold">
-                  {{ event.price === 0 ? 'GRATUIT' : `${event.price}€` }}
+            <!-- CTA Billetterie (après ouverture) -->
+            <div v-else-if="ticketingOpen && !ticketingClosed" class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <!-- CTA Header -->
+              <div class="bg-gradient-to-r from-purple-600 to-blue-600 p-6 text-white text-center">
+                <h2 class="text-2xl font-bold mb-2">Réservez votre place</h2>
+                <div class="inline-flex items-center bg-white/20 rounded-lg px-4 py-2">
+                  <span class="text-2xl font-bold mr-2">5€</span>
+                  <span class="text-purple-100">par billet</span>
                 </div>
               </div>
 
-              <!-- Form Content -->
-              <div class="p-8">
-                <!-- Error Message -->
-                <div v-if="errorMessage" class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-                  <div class="flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              <!-- CTA Content -->
+              <div class="p-6 text-center">
+                <!-- Message principal -->
+                <p class="text-gray-700 font-medium mb-4">Billets pour regarder l'événement Winter Cup</p>
+                
+                <!-- Infos compactes -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-6 text-sm text-gray-600">
+                  <div class="flex items-center justify-center">
+                    <svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    {{ errorMessage }}
+                    <span>Dimanche 2 novembre à 14h</span>
+                  </div>
+                  <div class="flex items-center justify-center">
+                    <svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    </svg>
+                    <span>Le Prisme</span>
+                  </div>
+                  <div class="flex items-center justify-center">
+                    <svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span>Places limitées</span>
                   </div>
                 </div>
 
-                <!-- Form -->
-                <form @submit.prevent="submitRegistration" class="space-y-6">
-                  <!-- First Name -->
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">
-                      Prénom <span class="text-red-500">*</span>
-                    </label>
-                    <input 
-                      v-model="form.firstName" 
-                      type="text" 
-                      required 
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      placeholder="Votre prénom"
-                    >
-                  </div>
+                <!-- CTA Principal -->
+                <a 
+                  href="https://www.billetweb.fr/winter-cup"
+                  target="_blank"
+                  class="inline-flex items-center justify-center w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white text-lg font-bold py-4 px-6 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
+                >
+                  Réserver ma place
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
 
-                  <!-- Last Name -->
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">
-                      Nom <span class="text-red-500">*</span>
-                    </label>
-                    <input 
-                      v-model="form.lastName" 
-                      type="text" 
-                      required 
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      placeholder="Votre nom"
-                    >
-                  </div>
-
-                  <!-- Email -->
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">
-                      Email <span class="text-red-500">*</span>
-                    </label>
-                    <input 
-                      v-model="form.email" 
-                      type="email" 
-                      required 
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      placeholder="votre@email.com"
-                    >
-                    <p class="text-sm text-gray-500 mt-1">Votre billet sera envoyé à cette adresse</p>
-                  </div>
-
-                  <!-- Phone (Optional) -->
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">
-                      Téléphone <span class="text-gray-400">(optionnel)</span>
-                    </label>
-                    <input 
-                      v-model="form.phone" 
-                      type="tel" 
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                      placeholder="06 12 34 56 78"
-                    >
-                  </div>
-
-                  <!-- Terms -->
-                  <div class="bg-gray-50 rounded-lg p-4">
-                    <p class="text-sm text-gray-600">
-                      En vous inscrivant, vous acceptez de recevoir des informations concernant cet événement. 
-                      Vos données personnelles sont traitées de manière confidentielle.
-                    </p>
-                  </div>
-
-                  <!-- Submit Button -->
-                  <button 
-                    type="submit" 
-                    :disabled="isSubmitting || event.availableTickets === 0"
-                    :class="event.availableTickets === 0 
-                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-                      : 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700'"
-                    class="w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all transform hover:scale-[1.02] disabled:hover:scale-100 disabled:cursor-not-allowed"
-                  >
-                    <span v-if="isSubmitting" class="flex items-center justify-center">
-                      <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Inscription en cours...
-                    </span>
-                    <span v-else-if="event.availableTickets === 0">
-                      Événement complet
-                    </span>
-                    <span v-else>
-                      🎫 S'inscrire gratuitement
-                    </span>
-                  </button>
-                </form>
+                <!-- Info sécurité -->
+                <div class="flex items-center justify-center text-xs text-gray-400">
+                  <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                  </svg>
+                  <span>Paiement sécurisé • Billet électronique envoyé par email</span>
+                </div>
               </div>
             </div>
           </div>
@@ -348,16 +256,7 @@ const ticketingClosed = computed(() => {
 // State
 const event = ref(null)
 const loading = ref(true)
-const isSubmitting = ref(false)
-const registrationSuccess = ref(false)
 const errorMessage = ref('')
-
-const form = ref({
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: ''
-})
 
 // Methods
 const loadEvent = async () => {
@@ -390,35 +289,7 @@ const formatDate = (dateString) => {
   return `${formattedDate} à 14h`
 }
 
-const submitRegistration = async () => {
-  if (!event.value) return
-  
-  isSubmitting.value = true
-  errorMessage.value = ''
-  
-  try {
-    const response = await $fetch('/api/tickets/register', {
-      method: 'POST',
-      body: {
-        eventId: event.value.id,
-        firstName: form.value.firstName,
-        lastName: form.value.lastName,
-        email: form.value.email,
-        phone: form.value.phone
-      }
-    })
-    
-    if (response.success) {
-      registrationSuccess.value = true
-      await loadEvent()
-    }
-    
-  } catch (error) {
-    errorMessage.value = error.data?.message || 'Une erreur est survenue lors de l\'inscription.'
-  } finally {
-    isSubmitting.value = false
-  }
-}
+// Plus besoin de fonction de soumission - redirection vers billetterie externe
 
 // SEO
 useSeoMeta({
