@@ -123,7 +123,7 @@ export default defineEventHandler(async (event) => {
 
     // Créer le PDF du billet
     const createTicketPDF = () => {
-      return new Promise((resolve, reject) => {
+      return new Promise(async (resolve, reject) => {
         try {
           const doc = new PDFDocument({ size: 'A4', margin: 50 })
           const chunks = []
@@ -132,12 +132,17 @@ export default defineEventHandler(async (event) => {
           doc.on('end', () => resolve(Buffer.concat(chunks)))
           doc.on('error', reject)
 
-          // En-tête avec logo Winter Cup
+          // Télécharger et ajouter le logo Winter Cup
           try {
-            // Ajouter le logo Winter Cup (centré : 595/2 - 60 = 237.5, arrondi à 238)
-            doc.image('https://www.crosskultur.fr/winter_logo.png', 238, 40, { width: 120, height: 120 })
+            const logoResponse = await fetch('https://www.crosskultur.fr/winter_logo.png')
+            if (logoResponse.ok) {
+              const logoBuffer = Buffer.from(await logoResponse.arrayBuffer())
+              doc.image(logoBuffer, 238, 40, { width: 120, height: 120 })
+            } else {
+              console.log('Logo non accessible, continuation sans logo')
+            }
           } catch (logoError) {
-            console.log('Logo non trouvé, continuation sans logo')
+            console.log('Erreur lors du téléchargement du logo:', logoError.message)
           }
           
           doc.fontSize(24)
