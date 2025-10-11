@@ -134,29 +134,29 @@ export default defineEventHandler(async (event) => {
 
           // En-tête avec logo Winter Cup
           try {
-            // Ajouter le logo Winter Cup
-            doc.image('public/winter_logo.png', 250, 50, { width: 80, height: 80 })
+            // Ajouter le logo Winter Cup (centré : 595/2 - 60 = 237.5, arrondi à 238)
+            doc.image('https://www.crosskultur.fr/winter_logo.png', 238, 40, { width: 120, height: 120 })
           } catch (logoError) {
             console.log('Logo non trouvé, continuation sans logo')
           }
           
           doc.fontSize(24)
              .fillColor('#7C3AED')
-             .text('Cross Kultur', 50, 140, { align: 'center' })
+             .text('Cross Kultur', 50, 170, { align: 'center' })
           
           doc.fontSize(16)
              .fillColor('#666666')
-             .text('Billet Électronique', 50, 170, { align: 'center' })
+             .text('Billet Électronique', 50, 200, { align: 'center' })
 
           // Ligne de séparation
-          doc.moveTo(50, 200)
-             .lineTo(545, 200)
+          doc.moveTo(50, 230)
+             .lineTo(545, 230)
              .strokeColor('#7C3AED')
              .lineWidth(2)
              .stroke()
 
           // Informations de l'événement
-          const startY = 230
+          const startY = 260
           doc.fontSize(22)
              .fillColor('#333333')
              .text(ticket.event.title, 50, startY, { width: 400 })
