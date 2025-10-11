@@ -90,7 +90,7 @@
                   </svg>
                 </div>
                 <p class="text-sm opacity-80">Places disponibles</p>
-                <p class="font-semibold">200</p>
+                <p class="font-semibold">100</p>
               </div>
             </div>
           </div>

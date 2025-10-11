@@ -11,7 +11,7 @@
           <div class="flex flex-col sm:flex-row gap-2">
             <button 
               @click="logout"
-              class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm sm:text-base order-3 sm:order-1"
+              class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm sm:text-base order-4 sm:order-1"
             >
               🔒 Déconnexion
             </button>
@@ -22,8 +22,14 @@
               🔍 Scanner QR
             </button>
             <button 
+              @click="$router.push('/admin/test-billetterie')"
+              class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors text-sm sm:text-base order-2 sm:order-3"
+            >
+              🧪 Test Billetterie
+            </button>
+            <button 
               @click="$router.push('/billetterie')"
-              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm sm:text-base order-2 sm:order-3"
+              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm sm:text-base order-3 sm:order-4"
             >
               🎫 Billetterie
             </button>

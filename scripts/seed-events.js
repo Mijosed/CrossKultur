@@ -14,7 +14,7 @@ const existingEvents = [
     type: "sport",
     category: "sport",
     imageUrl: "/winter_cup.png",
-    location: "Ile-de-France",
+    location: "Le Prisme",
     duration: "Après-midi",
     price: "5",
     participants: 8,

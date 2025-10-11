@@ -21,7 +21,8 @@ export default defineEventHandler(async (event) => {
       include: {
         tickets: {
           select: {
-            id: true
+            id: true,
+            type: true
           }
         }
       }
@@ -34,8 +35,9 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Calculer les places disponibles
-    const reservedTickets = eventData.tickets.length
+    // Calculer les places disponibles (seulement les billets publics)
+    const publicTickets = eventData.tickets.filter(ticket => ticket.type !== 'admin')
+    const reservedTickets = publicTickets.length
     const availableTickets = eventData.maxTickets - reservedTickets
 
     // Préparer la réponse

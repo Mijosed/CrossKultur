@@ -7,14 +7,16 @@ export default defineEventHandler(async (event) => {
       include: {
         tickets: {
           where: {
-            status: 'valid'
+            status: 'valid',
+            type: 'public'
           }
         },
         _count: {
           select: {
             tickets: {
               where: {
-                status: 'valid'
+                status: 'valid',
+                type: 'public'
               }
             }
           }

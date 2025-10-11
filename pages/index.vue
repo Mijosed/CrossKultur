@@ -15,11 +15,13 @@
           </svg>
         </button>
         
-        <!-- Icône -->
-        <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7"></path>
-          </svg>
+        <!-- Image Winter Cup -->
+        <div class="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden shadow-lg">
+          <img 
+            src="/winter_logo.png" 
+            alt="Winter Cup"
+            class="w-full h-full object-cover"
+          >
         </div>
         
         <!-- Contenu -->
@@ -176,9 +178,11 @@ onMounted(() => {
   // 1. Pas de navigation interne OU première visite de la session
   // 2. ET popup pas encore affiché dans cette session
   if ((!isInternalNavigation || !popupShownThisSession) && !popupShownThisSession) {
-    showWinterCupBanner.value = true
-    // Marquer comme affiché pour cette session
-    sessionStorage.setItem('winterCupPopupShown', 'true')
+    setTimeout(() => {
+      showWinterCupBanner.value = true
+      // Marquer comme affiché pour cette session
+      sessionStorage.setItem('winterCupPopupShown', 'true')
+    }, 2000) // Affiche après 2 secondes
   }
 })
 

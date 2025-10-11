@@ -9,15 +9,9 @@
           </h1>
           <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
             Réservez votre place pour nos événements <br>
-            Inscription gratuite et sécurisée.
+            Inscription sécurisée.
           </p>
           <div class="flex justify-center items-center space-x-8 text-sm opacity-80">
-            <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              Inscription gratuite
-            </div>
             <div class="flex items-center">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z"></path>

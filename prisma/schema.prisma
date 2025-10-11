@@ -42,6 +42,7 @@ model Ticket {
   
   // Informations du billet
   status    String   @default("valid") // "valid", "used", "cancelled"
+  type      String   @default("public") // "public", "admin"
   qrCode    String?  // Base64 du QR code
   
   // Relations

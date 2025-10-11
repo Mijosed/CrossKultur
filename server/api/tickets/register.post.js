@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { nanoid } from 'nanoid'
 import { Resend } from 'resend'
 import QRCode from 'qrcode'
+import PDFDocument from 'pdfkit'
 
 const prisma = new PrismaClient()
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -17,7 +18,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event)  
   // Validation des données requises
-  const { eventId, firstName, lastName, email, phone } = body
+  const { eventId, firstName, lastName, email, phone, isAdminTicket } = body
   
   if (!eventId || !firstName || !lastName || !email) {
     throw createError({
@@ -53,14 +54,18 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    const reservedTickets = eventData.tickets.length
-    const availableTickets = eventData.maxTickets - reservedTickets
+    // Si c'est un billet admin, on ne vérifie pas les places disponibles
+    if (!isAdminTicket) {
+      // Compter seulement les billets non-admin pour les places publiques
+      const publicTickets = eventData.tickets.filter(ticket => ticket.type !== 'admin').length
+      const availableTickets = eventData.maxTickets - publicTickets
 
-    if (availableTickets <= 0) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: 'Aucune place disponible pour cet événement'
-      })
+      if (availableTickets <= 0) {
+        throw createError({
+          statusCode: 400,
+          statusMessage: 'Aucune place disponible pour cet événement'
+        })
+      }
     }
 
     // Vérifier si l'email n'est pas déjà inscrit pour cet événement
@@ -90,7 +95,8 @@ export default defineEventHandler(async (event) => {
         email: email,
         phone: phone || null,
         ticketCode: ticketCode,
-        status: 'valid'
+        status: 'valid',
+        type: isAdminTicket ? 'admin' : 'public'
       },
       include: {
         event: true
@@ -105,23 +111,136 @@ export default defineEventHandler(async (event) => {
       email: ticket.email
     })
     
-    // Générer le QR code comme buffer pour attachment
-    const qrCodeBuffer = await QRCode.toBuffer(qrCodeData, {
+    // Générer le QR code comme data URL pour l'intégrer dans le PDF
+    const qrCodeDataURL = await QRCode.toDataURL(qrCodeData, {
       width: 200,
       margin: 2,
       color: {
         dark: '#000000',
         light: '#FFFFFF'
-      },
-      type: 'png'
+      }
     })
+
+    // Créer le PDF du billet
+    const createTicketPDF = () => {
+      return new Promise((resolve, reject) => {
+        try {
+          const doc = new PDFDocument({ size: 'A4', margin: 50 })
+          const chunks = []
+          
+          doc.on('data', chunk => chunks.push(chunk))
+          doc.on('end', () => resolve(Buffer.concat(chunks)))
+          doc.on('error', reject)
+
+          // En-tête avec logo Winter Cup
+          try {
+            // Ajouter le logo Winter Cup
+            doc.image('public/winter_logo.png', 250, 50, { width: 80, height: 80 })
+          } catch (logoError) {
+            console.log('Logo non trouvé, continuation sans logo')
+          }
+          
+          doc.fontSize(24)
+             .fillColor('#7C3AED')
+             .text('Cross Kultur', 50, 140, { align: 'center' })
+          
+          doc.fontSize(16)
+             .fillColor('#666666')
+             .text('Billet Électronique', 50, 170, { align: 'center' })
+
+          // Ligne de séparation
+          doc.moveTo(50, 200)
+             .lineTo(545, 200)
+             .strokeColor('#7C3AED')
+             .lineWidth(2)
+             .stroke()
+
+          // Informations de l'événement
+          const startY = 230
+          doc.fontSize(22)
+             .fillColor('#333333')
+             .text(ticket.event.title, 50, startY, { width: 400 })
+
+          doc.fontSize(14)
+             .fillColor('#666666')
+             .text(`Date: ${new Date(ticket.event.date).toLocaleDateString('fr-FR', {
+               weekday: 'long',
+               year: 'numeric',
+               month: 'long',
+               day: 'numeric'
+             })}`, 50, startY + 40)
+
+          doc.text(`Heure: 14:00`, 50, startY + 60)
+
+          if (ticket.event.location) {
+            doc.text(`Lieu: ${ticket.event.location}`, 50, startY + 80)
+          }
+
+          // Informations du participant
+          doc.fontSize(16)
+             .fillColor('#7C3AED')
+             .text('Informations du participant', 50, startY + 120)
+
+          doc.fontSize(12)
+             .fillColor('#333333')
+             .text(`Nom: ${ticket.firstName} ${ticket.lastName}`, 50, startY + 145)
+             .text(`Email: ${ticket.email}`, 50, startY + 165)
+
+          if (ticket.phone) {
+            doc.text(`Téléphone: ${ticket.phone}`, 50, startY + 185)
+          }
+
+          doc.text(`Code du billet: ${ticket.ticketCode}`, 50, ticket.phone ? startY + 205 : startY + 185)
+
+          // QR Code
+          const qrY = ticket.phone ? startY + 240 : startY + 220
+          doc.fontSize(16)
+             .fillColor('#7C3AED')
+             .text('QR Code d\'entrée', 50, qrY)
+
+          // Convertir le data URL en buffer et l'ajouter au PDF
+          const base64Data = qrCodeDataURL.replace(/^data:image\/png;base64,/, '')
+          const qrBuffer = Buffer.from(base64Data, 'base64')
+          doc.image(qrBuffer, 50, qrY + 25, { width: 150, height: 150 })
+
+          // Instructions
+          doc.fontSize(14)
+             .fillColor('#7C3AED')
+             .text('Instructions importantes', 220, qrY + 25)
+
+          doc.fontSize(10)
+             .fillColor('#333333')
+             .text('• Présentez ce billet à l\'entrée de l\'événement', 220, qrY + 50)
+             .text('• Conservez ce document sur votre téléphone', 220, qrY + 70)
+             .text('• Contact: contact@crosskultur.fr', 220, qrY + 90)
+
+          // Pied de page
+          doc.fontSize(10)
+             .fillColor('#999999')
+             .text('Merci de votre inscription !', 50, 750, { align: 'center' })
+             .text('L\'équipe Cross Kultur', 50, 765, { align: 'center' })
+
+          // Bordure décorative
+          doc.rect(40, 40, 515, 755)
+             .strokeColor('#7C3AED')
+             .lineWidth(1)
+             .stroke()
+
+          doc.end()
+        } catch (error) {
+          reject(error)
+        }
+      })
+    }
+
+    const ticketPDFBuffer = await createTicketPDF()
 
     // Envoyer l'email de confirmation avec le billet
     try {
       const emailResult = await resend.emails.send({
         from: 'Cross Kultur  <contact@crosskultur.fr>',
         to: [ticket.email],
-        subject: `Votre billet pour ${ticket.event.title}`,
+        subject: `Votre billet pour la ${ticket.event.title}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
             <div style="text-align: center; margin-bottom: 30px;">
@@ -132,15 +251,7 @@ export default defineEventHandler(async (event) => {
             <div style="background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%); color: white; padding: 25px; border-radius: 12px; margin-bottom: 25px;">
               <h2 style="margin: 0 0 10px 0; font-size: 24px;">${ticket.event.title}</h2>
               <p style="margin: 0; opacity: 0.9; font-size: 16px;">
-                ${new Date(ticket.event.date).toLocaleDateString('fr-FR', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </p>
+              dimanche 2 novembre 2025 à 14:00
             </div>
             
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
@@ -153,13 +264,13 @@ export default defineEventHandler(async (event) => {
             
             <div style="text-align: center; margin-bottom: 25px;">
               <div style="background: #f0f9ff; border: 2px dashed #0ea5e9; border-radius: 12px; padding: 20px;">
-                <h3 style="color: #0c4a6e; margin: 0 0 10px 0;">📱 QR Code d'entrée</h3>
+                <h3 style="color: #0c4a6e; margin: 0 0 10px 0;">🎫 Votre billet électronique</h3>
                 <p style="color: #0369a1; font-size: 16px; margin: 0 0 10px 0;">
-                  <strong>Votre QR code est en pièce jointe de cet email</strong>
+                  <strong>Votre billet complet est en pièce jointe de cet email</strong>
                 </p>
                 <p style="color: #075985; font-size: 14px; margin: 0;">
-                  📎 Téléchargez le fichier "qrcode.png" ci-joint<br>
-                  📱 Présentez-le à l'entrée de l'événement
+                  📎 Téléchargez le fichier PDF "billet-${ticket.ticketCode}.pdf" ci-joint<br>
+                  📱 Présentez-le à l'entrée de l'événement ou montrez le QR code qu'il contient
                 </p>
               </div>
             </div>
@@ -167,10 +278,9 @@ export default defineEventHandler(async (event) => {
             <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
               <h4 style="margin: 0 0 10px 0; color: #1976d2;">📋 Instructions importantes</h4>
               <ul style="margin: 0; padding-left: 20px; color: #666;">
-                <li><strong>QR Code :</strong> Téléchargez la pièce jointe "qrcode.png" et présentez-la à l'entrée</li>
-                <li><strong>Billet :</strong> Ce billet est nominatif et non transférable</li>
-                <li><strong>Arrivée :</strong> Veuillez arriver 15 minutes avant le début</li>
-                <li><strong>Sauvegarde :</strong> Conservez cet email et le QR code sur votre téléphone</li>
+                <li><strong>Billet PDF :</strong> Téléchargez la pièce jointe PDF et présentez-la à l'entrée</li>
+                <li><strong>QR Code :</strong> Le QR code est intégré dans le PDF pour un accès facile</li>
+                <li><strong>Sauvegarde :</strong> Conservez ce PDF sur votre téléphone et/ou imprimez-le</li>
                 <li><strong>Contact :</strong> En cas de problème, contactez-nous à contact@crosskultur.fr</li>
               </ul>
             </div>
@@ -183,10 +293,10 @@ export default defineEventHandler(async (event) => {
         `,
         attachments: [
           {
-            filename: 'qrcode.png',
-            content: qrCodeBuffer,
-            content_id: 'qrcode',
-            disposition: 'inline'
+            filename: `billet-${ticket.ticketCode}.pdf`,
+            content: ticketPDFBuffer,
+            content_type: 'application/pdf',
+            disposition: 'attachment'
           }
         ]
       })
