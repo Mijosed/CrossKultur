@@ -95,7 +95,7 @@
               <!-- Prix et bouton -->
               <div class="flex items-center justify-between">
                 <div class="text-2xl font-bold text-purple-600">
-                  {{ event.price === 0 ? 'Gratuit' : `10€` }}
+                  {{ event.price === 0 ? 'Gratuit' : `5€` }}
                 </div>
                 
                 <button
