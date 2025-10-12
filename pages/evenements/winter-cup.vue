@@ -217,6 +217,8 @@
           <!-- Sélection du type de participant -->
           <div v-if="!participantType" class="text-center">
             <h3 class="text-xl font-semibold text-gray-800 mb-6">Quel type de participant êtes-vous ?</h3>
+            <!-- Date limite d'inscription -->
+            <p class="text-sm text-gray-500 mb-4">Date limite d'inscription : Samedi 18 Octobre 2025, 23h59</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <button @click="participantType = 'creator'" class="p-6 border-2 border-purple-200 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all">
                 <div class="text-purple-600 mb-3">
