@@ -203,7 +203,7 @@
             <!-- Early bird -->
             <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-4 mb-6">
               <h4 class="font-semibold text-yellow-800 mb-2">🐦 Inscription anticipée</h4>
-              <p class="text-sm text-yellow-700">Inscrivez-vous avant le 1er novembre pour bénéficier de 5€ de réduction !</p>
+              <p class="text-sm text-yellow-700">Inscrivez-vous avant le 2 novembre pour bénéficier de 5€ de réduction !</p>
             </div>
 
             <!-- Informations complémentaires -->

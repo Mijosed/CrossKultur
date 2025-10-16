@@ -116,10 +116,10 @@ export default defineEventHandler(async (event) => {
         <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
           <h4 style="margin: 0 0 10px 0; color: #1976d2;">📅 Prochaines étapes</h4>
           <ul style="margin: 0; padding-left: 20px; color: #666;">
-            <li>Nous examinerons votre inscription sous 48h</li>
+            <li>Nous examinerons votre inscription sous 72 heures</li>
             <li>Vous recevrez un email de validation avec tous les détails</li>
-            <li>Date de l'événement : 1er Novembre 2025</li>
-            <li>Lieu : Île de France (détails à venir)</li>
+            <li>Date de l'événement : 2 Novembre 2025</li>
+            <li>Lieu : Le Prisme</li>
           </ul>
         </div>
         
