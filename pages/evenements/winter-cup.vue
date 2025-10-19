@@ -214,30 +214,42 @@
             </button>
           </div>
 
-          <!-- Sélection du type de participant -->
+          <!-- Message inscriptions terminées -->
           <div v-if="!participantType" class="text-center">
-            <h3 class="text-xl font-semibold text-gray-800 mb-6">Quel type de participant êtes-vous ?</h3>
-            <!-- Date limite d'inscription -->
-            <p class="text-sm text-gray-500 mb-4">Date limite d'inscription : Samedi 18 Octobre 2025, 23h59</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <button @click="participantType = 'creator'" class="p-6 border-2 border-purple-200 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all">
-                <div class="text-purple-600 mb-3">
-                  <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            <div class="mb-6">
+              <div class="bg-orange-100 border border-orange-300 rounded-lg p-4 mb-6">
+                <div class="flex items-center justify-center mb-3">
+                  <svg class="w-12 h-12 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                   </svg>
                 </div>
-                <h4 class="font-semibold text-gray-800 mb-2">Créateur de contenu</h4>
-                <p class="text-gray-600 text-sm">Vous créez du contenu sur les réseaux sociaux</p>
-              </button>
-              <button @click="participantType = 'subscriber'" class="p-6 border-2 border-purple-200 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all">
-                <div class="text-purple-600 mb-3">
-                  <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </div>
-                <h4 class="font-semibold text-gray-800 mb-2">Abonné</h4>
-                <p class="text-gray-600 text-sm">Vous suivez des créateurs de contenu</p>
-              </button>
+                <h3 class="text-xl font-bold text-orange-800 mb-2">Inscriptions terminées !</h3>
+                <p class="text-orange-700 mb-4">
+                  Les inscriptions pour participer au tournoi sont maintenant fermées.
+                </p>
+              </div>
+            </div>
+            
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+              <div class="flex items-center justify-center mb-4">
+                <svg class="w-16 h-16 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a1 1 0 001 1h1a1 1 0 001-1V7a2 2 0 00-2-2H5zM5 21a2 2 0 002-2v-3a1 1 0 00-1-1H5a1 1 0 00-1 1v3a2 2 0 002 2h1zm0 0h4a2 2 0 002-2v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-bold text-blue-800 mb-3">Venez en tant que spectateur !</h4>
+              <p class="text-blue-700 mb-4">
+                Vous pouvez tout de même profiter de l'événement en venant encourager les équipes et vivre l'ambiance unique de la Winter Cup !
+              </p>
+              <NuxtLink 
+                to="/billetterie/winter-cup" 
+                @click="closeModal"
+                class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a1 1 0 001 1h1a1 1 0 001-1V7a2 2 0 00-2-2H5zM5 21a2 2 0 002-2v-3a1 1 0 00-1-1H5a1 1 0 00-1 1v3a2 2 0 002 2h1zm0 0h4a2 2 0 002-2v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a2 2 0 002 2z"></path>
+                </svg>
+                Acheter un billet spectateur
+              </NuxtLink>
             </div>
           </div>
 
